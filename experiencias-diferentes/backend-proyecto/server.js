@@ -14,8 +14,7 @@ const {
     validateAuthorization,
     validateAdminRole,
 } = require('./middlewares/validate-auth');
-/* const { activitiesRepo } = require('./repositories');
- */
+
 // Users
 app.post('/api/users/register', usersController.register);
 app.post('/api/users/login', usersController.login);
@@ -25,13 +24,6 @@ app.put(
     usersController.updateUserInfo
 );
 
-//activities
-/* app.get('/api/activities', activitiesRepo.getActivities());
-app.get('/api/activities/price', activitiesRepo.findActivitiesByPrice());
-app.get('/api/activities/location', activitiesRepo.findActivitiesByLocation());
-app.get('/api/activities/date', activitiesRepo.findActivitiesByDate());
-app.get('/api/activities/type', activitiesRepo.findActivitiesByType());
- */
 app.post(
     '/api/activities',
     validateAuthorization,
@@ -70,7 +62,7 @@ app.delete(
 
 app.use(async (err, req, res, next) => {
     //REVISAR - no funciona con errores incontrolados (p.ej. insert BBDD incumpliendo clave foránea)
-    const status = err.isJoi ? 400 : 500;
+    const status = err.isJoi ? 400 : err.code || 500;
     res.status(status);
     res.send({ error: err.message });
 });
