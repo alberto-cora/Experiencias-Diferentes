@@ -22,7 +22,7 @@ async function bookActivity(req, res, next) {
 
         if (!realActivity) {
             const error = new Error('No existe la actividad');
-            error.code = 401;
+            error.httpcode = 401;
 
             throw error;
         }
@@ -36,7 +36,7 @@ async function bookActivity(req, res, next) {
 
         if (previusBook) {
             const error = new Error('Actividad ya reservada');
-            error.code = 401;
+            error.httpcode = 401;
 
             throw error;
         }
@@ -72,7 +72,7 @@ async function deleteBook(req, res, next) {
 
         if (!realActivity) {
             const error = new Error('No existe la actividad');
-            error.code = 401;
+            error.httpcode = 401;
 
             throw error;
         }
@@ -86,7 +86,7 @@ async function deleteBook(req, res, next) {
             const error = new Error(
                 'No existe ninguna reserva sobre esta actividad'
             );
-            error.code = 401;
+            error.httpcode = 401;
 
             throw error;
         }
@@ -95,7 +95,9 @@ async function deleteBook(req, res, next) {
             activityId,
         });
         res.status(201);
-        res.send();
+        res.send({
+            meesage: 'Reserva eliminada',
+        });
     } catch (err) {
         next(err);
     }

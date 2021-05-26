@@ -23,6 +23,7 @@ app.put(
     validateAuthorization,
     usersController.updateUserInfo
 );
+app.get('/api/users/:id', validateAuthorization, usersController.getUserInfo);
 
 app.post(
     '/api/activities',
@@ -62,7 +63,7 @@ app.delete(
 
 app.use(async (err, req, res, next) => {
     //REVISAR - no funciona con errores incontrolados (p.ej. insert BBDD incumpliendo clave foránea)
-    const status = err.isJoi ? 400 : err.code || 500;
+    const status = err.isJoi ? 400 : err.httpcode || 500;
     res.status(status);
     res.send({ error: err.message });
 });

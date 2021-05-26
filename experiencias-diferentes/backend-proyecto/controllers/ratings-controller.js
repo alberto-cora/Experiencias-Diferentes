@@ -24,13 +24,13 @@ async function ratingActivity(req, res, next) {
         const activity = await activitiesRepo.findActivitiesById(activityId);
         if (!activity) {
             const error = new Error('No existe la actividad');
-            error.code = 401;
+            error.httpcode = 401;
 
             throw error;
         }
         if (activity.fecha_fin > new Date()) {
             const error = new Error('La actividad no ha finalizado');
-            error.code = 401;
+            error.httpcode = 401;
 
             throw error;
         }
@@ -44,7 +44,7 @@ async function ratingActivity(req, res, next) {
 
         if (!userBooking) {
             const error = new Error('Usuario no ha hecho reserva');
-            error.code = 401;
+            error.httpcode = 401;
 
             throw error;
         }
@@ -60,7 +60,7 @@ async function ratingActivity(req, res, next) {
             const error = new Error(
                 'Ya existe una valoración sobre esta actividad'
             );
-            error.code = 401;
+            error.httpcode = 401;
 
             throw error;
         }

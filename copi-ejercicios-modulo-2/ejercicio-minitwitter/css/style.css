@@ -1,0 +1,37 @@
+body {
+  font-family: sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.action {
+  border: 0;
+  background-color: lightgray;
+  padding: 0.25rem 1rem;
+}
+
+form {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+form input {
+  flex-grow: 1;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  border: 1px solid lightgray;
+}
+
+ul#tweets {
+  list-style: none;
+  padding: 0;
+}
+
+ul#tweets li footer {
+  display: flex;
+}
+
+ul#tweets li footer time {
+  flex-grow: 1;
+  font-weight: bold;
+}

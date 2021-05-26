@@ -7,7 +7,7 @@ async function validateAuthorization(req, res, next) {
 
         if (!authorization || !authorization.startsWith('Bearer ')) {
             const error = new Error('Authorization header required');
-            error.code = 401;
+            error.httpcode = 401;
             throw error;
         }
 
@@ -21,7 +21,7 @@ async function validateAuthorization(req, res, next) {
 
         if (!users || !users.length) {
             const error = new Error('El usuario ya no existe');
-            error.code = 401;
+            error.httpcode = 401;
             throw error;
         }
 
@@ -37,13 +37,13 @@ async function validateAdminRole(req, res, next) {
         const auth = req.auth;
         if (!auth) {
             const error = new Error('usuario no autenticado');
-            error.code = 401;
+            error.httpcode = 401;
             throw error;
         }
 
         if (!auth.role || auth.role != 'admin') {
             const error = new Error('usuario no es administrador');
-            error.code = 401;
+            error.httpcode = 401;
             throw error;
         }
 

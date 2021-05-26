@@ -23,7 +23,7 @@ async function register(req, res, next) {
             const err = new Error(
                 'Password y repeatedPassword deben coincidir'
             );
-            err.code = 400;
+            err.httpcode = 400;
 
             throw err;
         }
@@ -32,7 +32,7 @@ async function register(req, res, next) {
 
         if (user) {
             const err = new Error(`Ya existe un usuario con email: ${email}`);
-            err.code = 409;
+            err.httpcode = 409;
 
             throw err;
         }
@@ -71,7 +71,7 @@ async function login(req, res, next) {
 
         if (!user) {
             const error = new Error('No existe el usuario');
-            error.code = 401;
+            error.httpcode = 401;
 
             throw error;
         }
@@ -80,7 +80,7 @@ async function login(req, res, next) {
 
         if (!isValidPassword) {
             const error = new Error('El password no es válido');
-            error.code = 401;
+            error.httpcode = 401;
 
             throw error;
         }
@@ -123,7 +123,7 @@ async function updateUserInfo(req, res, next) {
 
         if (id != userIdToken) {
             const error = new Error('id usuario inválido');
-            error.code = 401;
+            error.httpcode = 401;
 
             throw error;
         }
@@ -143,6 +143,28 @@ async function updateUserInfo(req, res, next) {
 
 async function getUserInfo(req, res, next) {
     try {
+        const tokenUserId = req.auth.id;
+        const userId = req.params.id;
+
+        const schema = Joi.number().positive().required();
+
+        await schema.validateAsync(userId);
+        await schema.validateAsync(tokenUserId);
+
+        if (tokenUserId != userId) {
+            const error = new Error('id usuario inválido');
+            error.httpcode = 401;
+
+            throw error;
+        }
+
+        const user = await usersRepo.findUserById(userId);
+        res.status(200);
+        res.send({
+            id: user.id,
+            name: user.name,
+            email: user.email,
+        });
     } catch (err) {
         next(err);
     }

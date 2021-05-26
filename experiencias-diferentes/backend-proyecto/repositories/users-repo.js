@@ -7,6 +7,14 @@ async function findUserByEmail(email) {
 
     return users[0];
 }
+
+async function findUserById(id) {
+    const query = 'SELECT * FROM users WHERE id = ?';
+    const [users] = await database.pool.query(query, id);
+
+    return users[0];
+}
+
 async function createUser(data) {
     const query = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
     await database.pool.query(query, [data.name, data.email, data.password]);
@@ -22,11 +30,7 @@ async function getUsers() {
 
 async function updateUserInfo(user) {
     const query = 'UPDATE users SET name=?, email=? WHERE id=?';
-    await database.pool.query(query, [
-        user.name,
-        user.email,
-        user.id,
-    ]);
+    await database.pool.query(query, [user.name, user.email, user.id]);
 }
 
 module.exports = {
@@ -34,4 +38,5 @@ module.exports = {
     createUser,
     getUsers,
     updateUserInfo,
+    findUserById,
 };

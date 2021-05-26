@@ -1,0 +1,38 @@
+section.temp {
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+}
+
+table {
+  font-family: sans-serif;
+  background: lightblue;
+  padding: 1rem;
+}
+
+table caption {
+  padding: 0.5rem;
+}
+
+td:not(:first-child) {
+  border-bottom: 1px solid white;
+  padding: 0.25rem;
+  text-align: center;
+}
+
+td.high {
+  background-color: red;
+}
+
+td.medium {
+  background-color: orange;
+}
+
+td.low {
+  background-color: green;
+}
+
+td.lower {
+  background-color: blue;
+  color: white;
+}
