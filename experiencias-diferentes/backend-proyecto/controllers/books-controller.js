@@ -49,7 +49,9 @@ async function bookActivity(req, res, next) {
         });
 
         res.status(201);
-        res.send();
+        res.send({
+            message: 'Reserva realizada correctamente',
+        });
     } catch (err) {
         next(err);
     }
@@ -96,7 +98,7 @@ async function deleteBook(req, res, next) {
         });
         res.status(201);
         res.send({
-            meesage: 'Reserva eliminada',
+            message: 'Reserva eliminada',
         });
     } catch (err) {
         next(err);

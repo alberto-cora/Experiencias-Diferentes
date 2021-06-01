@@ -75,9 +75,15 @@ async function findActivitiesByType(type) {
     return activities[0];
 }
 
+async function updateActivityImage(activity) {
+    const query = 'UPDATE activities SET image=? WHERE id=?';
+    await database.pool.query(query, [activity.url, activity.activityId]);
+}
+
 module.exports = {
     createActivity,
     updateActivity,
+    updateActivityImage,
     getActivities,
     findActivitiesById,
     findActivitiesByPrice,

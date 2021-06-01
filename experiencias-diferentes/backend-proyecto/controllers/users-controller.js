@@ -135,7 +135,9 @@ async function updateUserInfo(req, res, next) {
         });
 
         res.status(201);
-        res.send();
+        res.send({
+            message: 'Info de usuario actualizada correctamente',
+        });
     } catch (err) {
         next(err);
     }
@@ -170,11 +172,46 @@ async function getUserInfo(req, res, next) {
     }
 }
 
+async function uploadUsersImage(req, res, next) {
+    try {
+        const tokenUserId = req.auth.id;
+        const userId = req.params.id;
+        const { file } = req; //Preguntar Berto validaciones sobre FILE??
+
+        const schema = Joi.number().positive().required();
+
+        await schema.validateAsync(userId);
+        await schema.validateAsync(tokenUserId);
+
+        if (tokenUserId != userId) {
+            const error = new Error('id usuario inválido');
+            error.httpcode = 401;
+
+            throw error;
+        }
+
+        const url = `static/images/${file.filename}`;
+
+        const updateUserImage = await usersRepo.updateUserImage({
+            userId,
+            url,
+        });
+
+        res.status(201);
+        res.send({
+            message: 'Imagen de usuario actualizada correctamente',
+        });
+    } catch (err) {
+        next(err);
+    }
+}
+
 module.exports = {
     register,
     login,
     getUserInfo,
     updateUserInfo,
+    uploadUsersImage,
 };
 
 //

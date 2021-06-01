@@ -19,7 +19,14 @@ async function findRatingByUserIdAndActivityId(rating) {
     return rate[0];
 }
 
+async function findAvgRatingByActivityId(activityId) {
+    const query = 'SELECT AVG(rating) as avg FROM rating WHERE activity_id=?';
+    const [avgRating] = await database.pool.query(query, [activityId]);
+    return avgRating[0].avg;
+}
+
 module.exports = {
     ratingActivity,
     findRatingByUserIdAndActivityId,
+    findAvgRatingByActivityId,
 };

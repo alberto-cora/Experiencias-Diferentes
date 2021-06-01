@@ -33,10 +33,16 @@ async function updateUserInfo(user) {
     await database.pool.query(query, [user.name, user.email, user.id]);
 }
 
+async function updateUserImage(user) {
+    const query = 'UPDATE users SET image=? WHERE id=?';
+    await database.pool.query(query, [user.url, user.userId]);
+}
+
 module.exports = {
     findUserByEmail,
     createUser,
     getUsers,
     updateUserInfo,
     findUserById,
+    updateUserImage,
 };

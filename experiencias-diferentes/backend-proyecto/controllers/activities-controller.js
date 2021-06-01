@@ -1,17 +1,10 @@
 const Joi = require('joi');
 const activitiesRepo = require('../repositories/activities-repo');
-//const validate = require('../middlewares/validate-auth');
+const booksRepo = require('../repositories/books-repo');
+const ratingsRepo = require('../repositories/ratings-repo');
 
 async function createActivity(req, res, next) {
     try {
-        //const { role } = req.auth;
-        /* 
-         if (role !== 'admin') {
-            const err = new Error('Solo los admins pueden crear una actividad');
-            err.status = 403;
-            throw err; 
-        } 
-  */
         const {
             activityName,
             type,
@@ -48,7 +41,9 @@ async function createActivity(req, res, next) {
         });
 
         res.status(201);
-        res.send();
+        res.send({
+            message: 'Actividad creada correctamente',
+        });
     } catch (err) {
         next(err);
     }
@@ -56,17 +51,8 @@ async function createActivity(req, res, next) {
 
 async function updateActivity(req, res, next) {
     try {
-        //const { role } = req.auth;
         const { id } = req.params;
 
-        /* if (role !== 'admin') {
-            const err = new Error(
-                'Solo los admins pueden actualizar una actividad'
-            );
-            err.status = 403;
-            throw err;
-        }
- */
         const {
             activityName,
             type,
@@ -104,7 +90,66 @@ async function updateActivity(req, res, next) {
         });
 
         res.status(201);
-        res.send();
+        res.send({
+            message: 'Actividad actualizada corretamente',
+        });
+    } catch (err) {
+        next(err);
+    }
+}
+
+async function getActivityInfo(req, res, next) {
+    try {
+        const activityId = req.params.id;
+
+        const activity = await activitiesRepo.findActivitiesById(activityId);
+
+        const totalBooks = await booksRepo.findTotalBookingsCountByActivityId(
+            activityId
+        );
+
+        const avgRating = await ratingsRepo.findAvgRatingByActivityId(
+            activityId
+        );
+
+        res.status(200);
+        res.send({
+            title: activity.titulo,
+            id: activity.id,
+            description: activity.descripcion,
+            startDate: activity.fecha_inicio,
+            endDate: activity.fecha_fin,
+            totalPlaces: activity.plazas_totales,
+            price: activity.price,
+            location: activity.location,
+            availablePlaces: activity.plazas_totales - totalBooks,
+            rating: avgRating,
+            //image:
+        });
+    } catch (err) {
+        next(err);
+    }
+}
+
+async function uploadActivityImage(req, res, next) {
+    //no voy a actualizar imagen, voy a devolverla en front como resultado de la búsqueeda por id actividad
+    try {
+        const activityId = req.params.id;
+        const { file } = req; //DUDA BERTO: VALIDACIONES SOBRE FILE
+        const schema = Joi.number().positive().required();
+        await schema.validateAsync(activityId);
+
+        const url = `static/images/${file.filename}`;
+
+        const updateActivityImage = await activitiesRepo.updateActivityImage({
+            activityId,
+            url,
+        });
+
+        res.status(201);
+        res.send({
+            message: 'Imagen de actividad subida correctamente',
+        });
     } catch (err) {
         next(err);
     }
@@ -158,6 +203,8 @@ async function getActivitiesByType(req, res, next) {
 module.exports = {
     createActivity,
     updateActivity,
+    getActivityInfo,
+    uploadActivityImage,
     getActivities,
     getActivitiesByPrice,
     getActivitiesByLocation,

@@ -72,7 +72,9 @@ async function ratingActivity(req, res, next) {
         });
 
         res.status(201);
-        res.send();
+        res.send({
+            message: 'Valoración realizada correctamente',
+        });
     } catch (err) {
         next(err);
     }

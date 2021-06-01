@@ -9,7 +9,7 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` varchar(100) DEFAULT 'user',
-  `validado` BOOLEAN NOT NULL DEFAULT 0,
+  `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -23,6 +23,7 @@ CREATE TABLE `activities` (
     `plazas_totales` INT NOT NULL,
     `price` INT NOT NULL,
     `location` varchar(55) NOT NULL,
+    `image` varchar(255) DEFAULT NULL,
     PRIMARY KEY (`id`)
     
 );
