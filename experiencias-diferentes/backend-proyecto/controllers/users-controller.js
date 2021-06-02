@@ -37,7 +37,7 @@ async function register(req, res, next) {
             throw err;
         }
 
-        const passwordHash = await bcrypt.hash(password, 10);
+        const passwordHash = await bcrypt.hash(password, 10); // no se puede guardar en base de datos, lo trasnformamos a churro
 
         const createdUser = await usersRepo.createUser({
             name,
@@ -103,11 +103,53 @@ async function login(req, res, next) {
     }
 }
 
+async function updatePassword(req, res, next) {
+    try {
+        const { id } = req.params;
+        const userIdToken = req.auth.id; // no se valida, ya lo está al estar logueado con el ValidateAuth.
+        const { newPassword, repeatedNewPassword } = req.body;
+        const idSchema = Joi.number().required();
+        const schema = Joi.object({
+            newPassword: Joi.string().min(5).max(20).required(),
+            repeatedNewPassword: Joi.string().min(5).max(20).required(),
+        });
+        await idSchema.validateAsync(id);
+        await schema.validateAsync(req.body);
+
+        if (id != userIdToken) {
+            const error = new Error('id usuario inválido');
+            error.httpcode = 401;
+
+            throw error;
+        }
+        if (newPassword != repeatedNewPassword) {
+            const error = new Error('contraseña no coincide');
+            error.httpcode = 401;
+
+            throw error;
+        }
+
+        const newPasswordHash = await bcrypt.hash(newPassword, 10);
+
+        const updatedPassword = await usersRepo.updatePassword({
+            id,
+            newPasswordHash,
+        });
+
+        res.status(201);
+        res.send({
+            message: 'Contraseña actualizada correctamente',
+        });
+    } catch (err) {
+        next(err);
+    }
+}
+
 async function updateUserInfo(req, res, next) {
     try {
         const { id } = req.params; // recupero id de la url
 
-        const userIdToken = req.auth.id;
+        const userIdToken = req.auth.id; //propiedad auth.id, no es objeto, no hace falta destruct
 
         const { name, email } = req.body;
 
@@ -212,6 +254,7 @@ module.exports = {
     getUserInfo,
     updateUserInfo,
     uploadUsersImage,
+    updatePassword,
 };
 
 //

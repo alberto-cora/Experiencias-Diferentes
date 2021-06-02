@@ -105,6 +105,7 @@ async function getActivityInfo(req, res, next) {
         const activity = await activitiesRepo.findActivitiesById(activityId);
 
         const totalBooks = await booksRepo.findTotalBookingsCountByActivityId(
+            //volver a invocarlo en la reserva
             activityId
         );
 
@@ -124,7 +125,7 @@ async function getActivityInfo(req, res, next) {
             location: activity.location,
             availablePlaces: activity.plazas_totales - totalBooks,
             rating: avgRating,
-            //image:
+            image: activity.image,
         });
     } catch (err) {
         next(err);

@@ -42,6 +42,13 @@ const upload = multer({
 // Users
 app.post('/api/users/register', usersController.register);
 app.post('/api/users/login', usersController.login);
+
+app.put(
+    '/api/users/:id/password',
+    validateAuthorization,
+    usersController.updatePassword
+);
+
 app.put(
     '/api/users/:id',
     validateAuthorization,

@@ -40,7 +40,18 @@ async function bookActivity(req, res, next) {
 
             throw error;
         }
+        //validaremos que existen plazas libres
 
+        // realActivity.total_places mayor ono que el total q lo traigo de activController(booksRepo.findTotalBookingsCountByActivityId)
+        const totalBooks = await booksRepo.findTotalBookingsCountByActivityId(
+            activityId
+        );
+
+        if (realActivity.totalPlaces <= totalBooks) {
+            const error = new Error('no quedan plazas libres');
+            error.httpcode = 401;
+            throw error;
+        }
         // Última parte código función bookActivity
 
         const bookActivity = await booksRepo.bookActivity({

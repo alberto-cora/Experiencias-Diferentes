@@ -38,6 +38,11 @@ async function updateUserImage(user) {
     await database.pool.query(query, [user.url, user.userId]);
 }
 
+async function updatePassword(user) {
+    const query = 'UPDATE users SET password=? WHERE id=?';
+    await database.pool.query(query, [user.newPasswordHash, user.id]);
+}
+
 module.exports = {
     findUserByEmail,
     createUser,
@@ -45,4 +50,5 @@ module.exports = {
     updateUserInfo,
     findUserById,
     updateUserImage,
+    updatePassword,
 };
