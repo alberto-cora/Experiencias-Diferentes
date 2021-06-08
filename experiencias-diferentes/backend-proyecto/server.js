@@ -6,6 +6,8 @@ const fs = require('fs');
 const express = require('express');
 const { PORT } = process.env;
 const app = express();
+const cors = require('cors');
+app.use(cors());
 app.use(express.json());
 const staticPath = path.resolve(__dirname, 'static');
 app.use(express.static(staticPath));
