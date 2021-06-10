@@ -1,0 +1,31 @@
+.foto-barranquismo {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  background-image: url("../src/static/xbarranquismo-en-tuejar-valencia-adrenalina-aventura-emocionday_6.jpg.pagespeed.ic.0iGBFVYm37.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 40px;
+  padding: 20px;
+}
+
+h2 {
+  float: left;
+  font-size: 1rem;
+  color: brown;
+  margin-left: 45px;
+  margin-top: 20px;
+}
+
+p {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.barranquismo-principal {
+  padding-top: 40px;
+  align-items: flex-start;
+  padding-left: 40px;
+}
