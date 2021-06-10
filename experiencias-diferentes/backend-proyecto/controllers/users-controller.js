@@ -3,15 +3,14 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const usersRepo = require('../repositories/users-repo');
-const { func } = require('joi');
+const { func, required } = require('joi');
 
 async function register(req, res, next) {
-    ///pendiente enviar mail de registro
     try {
         const { name, email, password, repeatedPassword } = req.body;
 
         const schema = Joi.object({
-            name: Joi.string(),
+            name: Joi.string().required(),
             email: Joi.string().email().required(),
             password: Joi.string().min(5).max(20).required(),
             repeatedPassword: Joi.string().min(5).max(20).required(),
@@ -45,11 +44,22 @@ async function register(req, res, next) {
             password: passwordHash,
         });
 
+        const tokenPayload = {
+            // lógica para una vez te registras estar ya logueado tb
+            id: createdUser.id,
+            role: createdUser.role,
+        };
+
+        const token = jwt.sign(tokenPayload, process.env.SECRET, {
+            expiresIn: '1d',
+        });
+
         res.status(201);
         res.send({
             id: createdUser.id,
             name: createdUser.name,
             email: createdUser.email,
+            token,
         });
     } catch (err) {
         next(err);
@@ -88,6 +98,7 @@ async function login(req, res, next) {
         const tokenPayload = {
             id: user.id,
             role: user.role,
+            name: user.name,
         };
 
         const token = jwt.sign(tokenPayload, process.env.SECRET, {
