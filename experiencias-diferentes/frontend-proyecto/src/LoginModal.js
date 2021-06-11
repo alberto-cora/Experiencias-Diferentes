@@ -67,6 +67,7 @@ function Signup({ setSignup, closeModal }) {
     const [email, setEmail] = useState('');
     const [repeatedPassword, setRepeatedPassword] = useState('');
     const setUser = useSetUser();
+    const user = useUser();
 
     const handleSignup = async (e) => {
         e.preventDefault();
@@ -81,6 +82,10 @@ function Signup({ setSignup, closeModal }) {
             closeModal();
         }
     };
+
+    if (user) {
+        return <Redirect to="/" />;
+    }
 
     return (
         <form onSubmit={handleSignup}>

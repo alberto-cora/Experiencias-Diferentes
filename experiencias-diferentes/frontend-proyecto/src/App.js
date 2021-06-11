@@ -14,7 +14,8 @@ import Buceo from './Buceo';
 import Barranquismo from './Barranquismo';
 import Velero from './Velero';
 import Masajes from './Masajes';
-import LoginModal from './LoginModal';
+//import LoginModal from './LoginModal';
+import CreateActivity from './CreateActivity';
 
 function App() {
     const [showModal, setShowModal] = useState(true);
@@ -54,16 +55,14 @@ function App() {
                     <Route path="/about" exact>
                         <About />
                     </Route>
-                    <Route path="/login" exact>
-                        {showModal && (
-                            <LoginModal
-                                closeModal={() => setShowModal(false)}
-                            />
-                        )}
-                    </Route>
                     <Route path="/profile">
                         <Profile />
                     </Route>
+
+                    <Route path="/activities/create">
+                        <CreateActivity />
+                    </Route>
+
                     <Route path="/">Not Found</Route>
                 </Switch>
             </main>

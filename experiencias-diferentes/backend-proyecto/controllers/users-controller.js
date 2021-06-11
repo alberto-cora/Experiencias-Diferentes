@@ -98,7 +98,6 @@ async function login(req, res, next) {
         const tokenPayload = {
             id: user.id,
             role: user.role,
-            name: user.name,
         };
 
         const token = jwt.sign(tokenPayload, process.env.SECRET, {
@@ -108,6 +107,7 @@ async function login(req, res, next) {
         res.send({
             id: user.id,
             token,
+            name: user.name,
         });
     } catch (err) {
         next(err);
