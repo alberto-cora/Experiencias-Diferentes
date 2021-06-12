@@ -1,8 +1,6 @@
 import './App.css';
-// import Login from "./Login";
 
 import Helmet from 'react-helmet';
-import { useState } from 'react';
 import Menu from './Menu';
 import { Switch, Route } from 'react-router-dom';
 import Home from './Home';
@@ -14,11 +12,10 @@ import Buceo from './Buceo';
 import Barranquismo from './Barranquismo';
 import Velero from './Velero';
 import Masajes from './Masajes';
-//import LoginModal from './LoginModal';
 import CreateActivity from './CreateActivity';
+import Activity from './Activity';
 
 function App() {
-    const [showModal, setShowModal] = useState(true);
     return (
         <div className="App">
             <Helmet>
@@ -26,8 +23,6 @@ function App() {
             </Helmet>
             <Menu />
             <hr />
-            {/* <Search /> */}
-            {/* <Profile /> */}
             <main>
                 <Switch>
                     <Route path="/" exact>
@@ -59,8 +54,11 @@ function App() {
                         <Profile />
                     </Route>
 
-                    <Route path="/activities/create">
+                    <Route path="/activity/create">
                         <CreateActivity />
+                    </Route>
+                    <Route path="/activity/:id" exact>
+                        <Activity />
                     </Route>
 
                     <Route path="/">Not Found</Route>
