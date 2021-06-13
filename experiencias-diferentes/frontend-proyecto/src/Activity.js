@@ -2,11 +2,13 @@ import { useParams } from 'react-router-dom';
 import useFetch from './useFetch';
 import { useUser } from './UserContext';
 import { Redirect } from 'react-router-dom';
+import { useState } from 'react';
 
 function Activity() {
     const { id } = useParams();
     const activity = useFetch(`http://localhost:3080/api/activities/${id}`);
     const user = useUser();
+    const [rating, setRating] = useState('');
     if (!activity) {
         return <div>Loading...</div>;
     }
@@ -47,6 +49,25 @@ function Activity() {
         }
     };
 
+    const handleRate = async (e) => {
+        e.preventDefault();
+
+        const res = await fetch(
+            `http://localhost:3080/api/activities/${id}/rate`,
+            {
+                method: 'POST',
+                body: JSON.stringify({ rating }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + user.token,
+                },
+            }
+        );
+        if (res.ok) {
+            return <Redirect to={`/activity/${id}`} />;
+        }
+    };
+
     const imgUrl = `http://localhost:3000/uploads/${activity.image} `;
 
     return (
@@ -66,6 +87,20 @@ function Activity() {
             </li>
             <button onClick={handleReservation}>Reservar</button>
             <button onClick={handleDeleteReservation}>Cancelar reserva</button>
+            <form onSubmit={handleRate}>
+                <label>
+                    Valoración
+                    <input
+                        name="rating"
+                        value={rating}
+                        type="number"
+                        min="0"
+                        max="5"
+                        onChange={(e) => setRating(e.target.value)}
+                    />
+                </label>
+                <button>Valorar</button>
+            </form>
         </div>
     );
 }
