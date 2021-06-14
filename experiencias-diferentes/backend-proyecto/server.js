@@ -80,11 +80,7 @@ app.put(
     activitiesController.updateActivity
 );
 
-app.get(
-    '/api/activities/:id',
-    validateAuthorization,
-    activitiesController.getActivityInfo
-);
+app.get('/api/activities/:id', activitiesController.getActivityInfo);
 
 app.post(
     '/api/activities/:id/image',

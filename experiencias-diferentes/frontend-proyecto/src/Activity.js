@@ -3,6 +3,7 @@ import useFetch from './useFetch';
 import { useUser } from './UserContext';
 import { Redirect } from 'react-router-dom';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Activity() {
     const { id } = useParams();
@@ -101,6 +102,14 @@ function Activity() {
                 </label>
                 <button>Valorar</button>
             </form>
+
+            <NavLink
+                to={`/activity/${id}/update`}
+                activeClassName="active"
+                exact
+            >
+                Editar actividad
+            </NavLink>
         </div>
     );
 }

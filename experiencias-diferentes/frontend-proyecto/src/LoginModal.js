@@ -20,7 +20,6 @@ function Login({ setSignup, closeModal }) {
         if (res.ok) {
             const data = await res.json();
             setUser(data);
-            console.log(showModal);
             closeModal();
         }
     };
