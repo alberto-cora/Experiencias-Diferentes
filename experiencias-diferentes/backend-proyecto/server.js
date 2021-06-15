@@ -80,6 +80,8 @@ app.put(
     activitiesController.updateActivity
 );
 
+app.get('/api/activities/', activitiesController.searchActivities);
+
 app.get('/api/activities/:id', activitiesController.getActivityInfo);
 
 app.post(

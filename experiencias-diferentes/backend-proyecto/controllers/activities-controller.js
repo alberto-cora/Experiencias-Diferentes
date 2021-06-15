@@ -29,7 +29,7 @@ async function createActivity(req, res, next) {
 
         await schema.validateAsync(req.body);
 
-        const createdActivity = await activitiesRepo.createActivity({
+        await activitiesRepo.createActivity({
             activityName,
             type,
             description,
@@ -77,7 +77,7 @@ async function updateActivity(req, res, next) {
 
         await schema.validateAsync(req.body);
 
-        const updatedActivity = await activitiesRepo.updateActivity({
+        await activitiesRepo.updateActivity({
             id,
             activityName,
             type,
@@ -142,7 +142,7 @@ async function uploadActivityImage(req, res, next) {
 
         const url = `static/images/${file.filename}`;
 
-        const updateActivityImage = await activitiesRepo.updateActivityImage({
+        await activitiesRepo.updateActivityImage({
             activityId,
             url,
         });
@@ -151,6 +151,20 @@ async function uploadActivityImage(req, res, next) {
         res.send({
             message: 'Imagen de actividad subida correctamente',
         });
+    } catch (err) {
+        next(err);
+    }
+}
+
+async function searchActivities(req, res, next) {
+    try {
+        const { type, date, location } = req.query;
+        const activities = await activitiesRepo.searchActivities({
+            type,
+            date,
+            location,
+        });
+        res.send(activities);
     } catch (err) {
         next(err);
     }
@@ -211,4 +225,5 @@ module.exports = {
     getActivitiesByLocation,
     getActivitiesByDate,
     getActivitiesByType,
+    searchActivities,
 };

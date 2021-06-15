@@ -80,6 +80,38 @@ async function updateActivityImage(activity) {
     await database.pool.query(query, [activity.url, activity.activityId]);
 }
 
+async function searchActivities({ type, date, location }) {
+    let query = 'SELECT * FROM activities';
+    const params = [];
+
+    if (type || date || location) {
+        query = `${query} WHERE`;
+        const conditions = [];
+
+        if (type) {
+            conditions.push('type=?');
+            params.push(type);
+        }
+
+        if (date) {
+            conditions.push(`fecha_inicio <= ? AND fecha_fin >= ?`);
+            params.push(date, date);
+        }
+
+        if (location) {
+            conditions.push('location LIKE ?');
+            params.push(`%${location}%`);
+        }
+
+        query = `${query} ${conditions.join(' AND  ')}`;
+    }
+
+    console.log(query);
+
+    const [activities] = await database.pool.query(query, params);
+    return activities;
+}
+
 module.exports = {
     createActivity,
     updateActivity,
@@ -90,4 +122,5 @@ module.exports = {
     findActivitiesByLocation,
     findActivitiesByDate,
     findActivitiesByType,
+    searchActivities,
 };

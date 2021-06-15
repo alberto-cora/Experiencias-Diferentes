@@ -33,8 +33,15 @@ function Menu() {
                     Velero
                 </NavLink>
 
-                <NavLink to="/activities/create" activeClassName="active" exact>
+                <NavLink to="/activity/create" activeClassName="active" exact>
                     Crear Actividad
+                </NavLink>
+                <NavLink to="/activity/5" activeClassName="active" exact>
+                    Actividad 5
+                </NavLink>
+
+                <NavLink to="/user/3" activeClassName="active" exact>
+                    Ver datos usuario 3
                 </NavLink>
 
                 <div className="user-area">
