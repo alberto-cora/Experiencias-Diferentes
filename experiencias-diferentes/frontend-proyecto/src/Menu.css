@@ -1,7 +1,7 @@
 .top {
   display: flex;
   flex: 1 1 auto;
-  width: 90%;
+  width: 90vw;
   justify-content: space-between;
   margin: 15px;
   padding: 15px;
@@ -18,8 +18,21 @@ aside.menu a.active {
   text-decoration: underline;
 }
 
-aside.menu button {
-  background-color: blue;
+.button-menu {
   color: white;
   border: 1px solid red;
+  background-color: blue;
+}
+
+.user-area {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  background-position: center;
+  background-size: cover;
+  width: 32px;
+  height: 32px;
+  margin-right: 5px;
 }

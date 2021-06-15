@@ -10,22 +10,27 @@
   padding: 20px;
 }
 
-h2 {
+.titulo {
   float: left;
   font-size: 1rem;
   color: brown;
-  margin-left: 45px;
+  margin-left: 40px;
   margin-top: 20px;
-}
-
-p {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .buceo-principal {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
   padding-top: 40px;
-  align-items: flex-start;
-  padding-left: 40px;
+  text-align: start;
+  padding-left: 90px;
+}
+
+.buceo2-principal {
+  margin-top: 20px;
+  padding-top: 40px;
+  text-align: start;
+  padding-left: 130px;
 }

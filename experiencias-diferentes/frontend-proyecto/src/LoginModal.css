@@ -10,6 +10,13 @@
   justify-content: center;
 }
 
+.button-modal {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  width: 15px;
+}
+
 .modal-fg {
   background-color: white;
   border-radius: 4px;
@@ -25,4 +32,8 @@
   justify-content: space-between;
   margin: 0 auto 12px;
   width: 250px;
+}
+.escape {
+  background-color: brown;
+  width: 15px;
 }

@@ -9,7 +9,7 @@ function Barranquismo() {
         <title>Experiencias diferentes: Barranquismo</title>
       </Helmet>
       <div className="foto-barranquismo" />
-      <h2>Iniciación al Barranquismo</h2>
+      <h2 className="titulo">Iniciación al Barranquismo</h2>
       <p className="barranquismo-principal">
         Una experiencia para aquellos que no sean expertos en la materia, estos
         maestros del surf <br />
@@ -18,8 +18,8 @@ function Barranquismo() {
         <p>Precio:250€</p>
       </p>
       <div className="foto-barranquismo" />
-      <h2>Expertos</h2>
-      <p className="barranquismo-principal">
+      <h2 className="titulo">Expertos</h2>
+      <p className="barranquismo2-principal">
         Una experiencia para aquellos que no sean expertos en la materia, estos
         maestros del surf <br />
         te enseñarán los primeros pasos que tienes que dar para seguir

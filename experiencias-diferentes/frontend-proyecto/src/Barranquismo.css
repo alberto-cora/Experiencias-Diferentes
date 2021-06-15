@@ -10,7 +10,7 @@
   padding: 20px;
 }
 
-h2 {
+.titulo {
   float: left;
   font-size: 1rem;
   color: brown;
@@ -26,6 +26,12 @@ p {
 
 .barranquismo-principal {
   padding-top: 40px;
-  align-items: flex-start;
-  padding-left: 40px;
+  text-align: start;
+  padding-left: 50px;
+}
+
+.barranquismo2-principal {
+  padding-top: 40px;
+  text-align: start;
+  padding-left: 180px;
 }

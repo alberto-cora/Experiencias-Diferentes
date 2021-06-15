@@ -9,17 +9,17 @@ function Masajes() {
         <title>Experiencias diferentes: Masajes</title>
       </Helmet>
       <div className="foto-masajes" />
-      <h2>Masaje con chocolate</h2>
+      <h2 className="titulo">Masaje con chocolate</h2>
       <p className="masajes-principal">
         Una experiencia para aquellos que no sean expertos en la materia, estos
-        maestros del surf <br />
-        te enseñarán los primeros pasos que tienes que dar para seguir
-        avanzando. <p>Fecha: 21/06/2021-23/06/2021</p> Lugar: Ferrol (A Coruña)
+        maestros del surf te enseñarán los primeros pasos que tienes que dar
+        para seguir avanzando. <p>Fecha: 21/06/2021-23/06/2021</p> Lugar: Ferrol
+        (A Coruña)
         <p>Precio:250€</p>
       </p>
       <div className="foto-masajes" />
-      <h2>Masajes variados</h2>
-      <p className="masajes-principal">
+      <h2 className="titulo">Masajes variados</h2>
+      <p className="masajes2-principal">
         Una experiencia para aquellos que no sean expertos en la materia, estos
         maestros del surf <br />
         te enseñarán los primeros pasos que tienes que dar para seguir

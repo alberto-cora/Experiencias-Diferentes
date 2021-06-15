@@ -9,7 +9,7 @@ function Velero() {
         <title>Experiencias diferentes: Velero</title>
       </Helmet>
       <div className="foto-velero" />
-      <h2>Viaje de 2 días</h2>
+      <h2 className="titulo">Viaje de 2 días</h2>
       <p className="velero-principal">
         Una experiencia para aquellos que no sean expertos en la materia, estos
         maestros del surf <br />
@@ -18,7 +18,7 @@ function Velero() {
         <p>Precio:250€</p>
       </p>
       <div className="foto-velero" />
-      <h2>Viaje de 4 días</h2>
+      <h2 className="titulo">Viaje de 4 días</h2>
       <p className="velero-principal">
         Una experiencia para aquellos que no sean expertos en la materia, estos
         maestros del surf <br />
