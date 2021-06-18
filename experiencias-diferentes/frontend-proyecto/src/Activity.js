@@ -71,8 +71,6 @@ function Activity() {
         }
     };
 
-    const imgUrl = `http://localhost:3000/uploads/${activity.image} `;
-
     return (
         <div className="activity">
             <h1>{activity.name}</h1>
@@ -86,7 +84,7 @@ function Activity() {
             <li>{activity.availablePlaces}</li>
             <li>{activity.rating}</li>
             <li>
-                <img src={imgUrl} alt="" />
+                <img src={activity.image} alt="" />
             </li>
             <button onClick={handleReservation}>Reservar</button>
             <button onClick={handleDeleteReservation}>Cancelar reserva</button>
