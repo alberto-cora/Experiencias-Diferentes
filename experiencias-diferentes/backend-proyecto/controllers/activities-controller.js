@@ -115,8 +115,9 @@ async function getActivityInfo(req, res, next) {
 
         res.status(200);
         res.send({
-            title: activity.titulo,
+            title: activity.titulo, //SERÁ TYPE?
             id: activity.id,
+            type: activity.type,
             description: activity.descripcion,
             startDate: activity.fecha_inicio,
             endDate: activity.fecha_fin,
@@ -125,7 +126,7 @@ async function getActivityInfo(req, res, next) {
             location: activity.location,
             availablePlaces: activity.plazas_totales - totalBooks,
             rating: avgRating,
-            image: activity.image,
+            image: `http://localhost:3080/images/${activity.image}`,
         });
     } catch (err) {
         next(err);
@@ -157,12 +158,23 @@ async function uploadActivityImage(req, res, next) {
 }
 
 async function searchActivities(req, res, next) {
+    //AÑADIR VALIDACION
     try {
-        const { type, date, location } = req.query;
+        const { type, date, location, price } = req.query;
+        const schema = Joi.object({
+            type: Joi.string(),
+            date: Joi.date(),
+            location: Joi.string(),
+            price: Joi.number(),
+        });
+
+        await schema.validateAsync(req.query);
+
         const activities = await activitiesRepo.searchActivities({
             type,
             date,
             location,
+            price,
         });
         res.send(activities);
     } catch (err) {

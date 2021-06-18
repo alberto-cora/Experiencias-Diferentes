@@ -31,46 +31,9 @@ async function updateActivity(activity) {
     ]);
 }
 
-async function getActivities() {
-    const [activities] = await database.pool.query('SELECT * from activities');
-    return activities;
-}
-
 async function findActivitiesById(id) {
     const query = 'SELECT * FROM activities WHERE id = ?';
     const [activities] = await database.pool.query(query, id);
-
-    return activities[0];
-}
-
-async function findActivitiesByPrice(price) {
-    const query = 'SELECT * FROM activities WHERE price = ?';
-    const [activities] = await database.pool.query(query, price);
-
-    return activities[0];
-}
-
-async function findActivitiesByLocation(location) {
-    const query = 'SELECT * FROM activities WHERE location = ?';
-    const [activities] = await database.pool.query(query, location);
-
-    return activities[0];
-}
-
-async function findActivitiesByDate(fecha_inicio, fecha_fin) {
-    const query =
-        'SELECT * FROM activities WHERE fecha_inicio = ? AND fecha_fin = ?';
-    const [activities] = await database.pool.query(
-        query,
-        fecha_inicio,
-        fecha_fin
-    );
-    return activities[0];
-}
-
-async function findActivitiesByType(type) {
-    const query = 'SELECT * FROM activities WHERE type = ?';
-    const [activities] = await database.pool.query(query, type);
 
     return activities[0];
 }
@@ -80,11 +43,11 @@ async function updateActivityImage(activity) {
     await database.pool.query(query, [activity.url, activity.activityId]);
 }
 
-async function searchActivities({ type, date, location }) {
+async function searchActivities({ type, date, location, price }) {
     let query = 'SELECT * FROM activities';
     const params = [];
 
-    if (type || date || location) {
+    if (type || date || location || price) {
         query = `${query} WHERE`;
         const conditions = [];
 
@@ -102,6 +65,10 @@ async function searchActivities({ type, date, location }) {
             conditions.push('location LIKE ?');
             params.push(`%${location}%`);
         }
+        if (price) {
+            conditions.push('price <=?');
+            params.push(price);
+        }
 
         query = `${query} ${conditions.join(' AND  ')}`;
     }
@@ -116,11 +83,6 @@ module.exports = {
     createActivity,
     updateActivity,
     updateActivityImage,
-    getActivities,
     findActivitiesById,
-    findActivitiesByPrice,
-    findActivitiesByLocation,
-    findActivitiesByDate,
-    findActivitiesByType,
     searchActivities,
 };
