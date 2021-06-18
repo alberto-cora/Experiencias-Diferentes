@@ -1,3 +1,13 @@
+/* @font-face {
+  font-family: "power_symbols";
+  src: url("Unicode_IEC_symbol.woff2") format("woff2"),
+    url("Unicode_IEC_symbol.woff") format("woff");
+}
+
+.power {
+  font-family: "power_symbols";
+  font-style: normal;
+} */
 .top {
   display: flex;
   flex: 1 1 auto;
@@ -26,13 +36,19 @@ aside.menu a.active {
 
 .user-area {
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 
-.avatar {
+/* .avatar {
   background-position: center;
   background-size: cover;
-  width: 32px;
-  height: 32px;
-  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+} */
+
+.logout {
+  display: flex;
+  color: red;
+  margin-top: 5px;
 }

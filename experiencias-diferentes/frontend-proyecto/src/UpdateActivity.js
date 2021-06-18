@@ -1,3 +1,4 @@
+import './Update.css';
 import { useState } from 'react';
 import { useUser } from './UserContext';
 import { Redirect } from 'react-router-dom';
@@ -9,7 +10,7 @@ function UpdateActivityWrapper() {
     const activity = useFetch(`http://localhost:3080/api/activities/${id}`);
 
     if (!activity) {
-        return <div>Loading...</div>;
+        return <i>Loading...</i>;
     }
 
     return <UpdateActivity activity={activity} />;
@@ -61,7 +62,9 @@ function UpdateActivity({ activity }) {
     return (
         <div className="update-activity">
             <h1>Editar Actividad</h1>
-            <form onSubmit={handleSubmit}>
+            <form className="formUpdate" onSubmit={handleSubmit}>
+                <h2>Nombre actividad:</h2>
+
                 <input
                     name="activityName"
                     placeholder="activityName..."
@@ -70,6 +73,8 @@ function UpdateActivity({ activity }) {
                     value={activityName}
                     onChange={(e) => setActivityName(e.target.value)}
                 />
+                <h2> Tipo actividad:</h2>
+
                 <input
                     name="type"
                     placeholder="type..."
@@ -78,7 +83,9 @@ function UpdateActivity({ activity }) {
                     value={type}
                     onChange={(e) => setType(e.target.value)}
                 />
-                <input
+                <h2> Descripción:</h2>
+
+                <textarea
                     name="description"
                     placeholder="description..."
                     type="text"
@@ -86,6 +93,8 @@ function UpdateActivity({ activity }) {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
+                <h2> Localización:</h2>
+
                 <input
                     name="location"
                     placeholder="location..."
@@ -93,6 +102,8 @@ function UpdateActivity({ activity }) {
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                 />
+                <h2> Fecha inicio:</h2>
+
                 <input
                     name="startDate"
                     placeholder="startDate..."
@@ -101,6 +112,8 @@ function UpdateActivity({ activity }) {
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
                 />
+                <h2> Fecha fin:</h2>
+
                 <input
                     name="endDate"
                     placeholder="endDate..."
@@ -109,6 +122,8 @@ function UpdateActivity({ activity }) {
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
                 />
+                <h2> Precio:</h2>
+
                 <input
                     name="price"
                     placeholder="price..."
@@ -117,6 +132,8 @@ function UpdateActivity({ activity }) {
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                 />
+                <h2> Plazas totales:</h2>
+
                 <input
                     name="totalPlaces"
                     placeholder="totalPlaces..."
@@ -126,7 +143,7 @@ function UpdateActivity({ activity }) {
                     value={totalPlaces}
                     onChange={(e) => setTotalPlaces(e.target.value)}
                 />
-                <button>Update</button>
+                <button className="button-update">Update</button>
             </form>
         </div>
     );

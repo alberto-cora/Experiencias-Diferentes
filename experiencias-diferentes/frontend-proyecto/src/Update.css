@@ -1,0 +1,23 @@
+.update-activity form {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  width: 40vw;
+  gap: 14px;
+}
+
+.formUpdate {
+  align-content: center;
+  margin-left: 25em;
+}
+
+h2 {
+  text-align: start;
+  margin: 0;
+  padding: 0;
+}
+
+.button-update {
+  width: 75px;
+  margin-top: 10px;
+}

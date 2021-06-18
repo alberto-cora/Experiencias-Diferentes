@@ -66,7 +66,7 @@ function CreateActivity() {
         <textarea
           name="description"
           placeholder="description..."
-          type="text-area"
+          type="text"
           required
           value={description}
           onChange={(e) => setDescription(e.target.value)}
