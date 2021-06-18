@@ -1,0 +1,18 @@
+.footer1 {
+  background-color: grey;
+  text-align: left;
+  margin-left: 15px;
+  width: 90vw;
+  height: 70px;
+}
+
+.footer1 a {
+  text-decoration: none;
+  display: flex;
+  justify-content: stretch;
+  align-content: center;
+  color: blue;
+  text-align: center;
+  margin: 10px;
+  margin-top: 10px;
+}

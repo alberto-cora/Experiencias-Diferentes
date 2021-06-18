@@ -1,0 +1,11 @@
+.activity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  gap: 6px;
+}
+
+.activity > li {
+  align-content: stretch;
+}

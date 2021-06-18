@@ -1,9 +1,9 @@
 .modal-bg {
   position: fixed;
   top: 0;
-  bottom: 0;
-  left: 0;
   right: 0;
+  left: 0;
+  bottom: 0;
   background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
@@ -11,10 +11,10 @@
 }
 
 .button-modal {
-  background-color: white;
-  color: black;
-  border: 1px solid black;
-  width: 15px;
+  width: 100px;
+  margin-top: 15px;
+  position: relative;
+  left: 120px;
 }
 
 .modal-fg {
@@ -33,7 +33,26 @@
   margin: 0 auto 12px;
   width: 250px;
 }
-.escape {
-  background-color: brown;
-  width: 15px;
+.escape-inicio {
+  background-color: rgba(255, 0, 0, 0.767);
+  width: 25px;
+  margin-left: 13em;
+  margin-top: 5px;
+  position: relative;
+  top: -255px;
+  right: 0;
+  left: 173px;
+  bottom: 0;
+}
+
+.escape-registro {
+  background-color: rgba(255, 0, 0, 0.795);
+  width: 25px;
+  margin-left: 13em;
+  margin-top: 5px;
+  position: relative;
+  top: -353px;
+  right: 0;
+  left: 173px;
+  bottom: 0;
 }

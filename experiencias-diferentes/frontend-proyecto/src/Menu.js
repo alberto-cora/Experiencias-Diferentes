@@ -1,63 +1,72 @@
-import { NavLink } from 'react-router-dom';
-import './Menu.css';
-import { useState } from 'react';
-import LoginModal from './LoginModal';
-import { useUser } from './UserContext';
+import { NavLink, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import "./Menu.css";
+import { useState } from "react";
+import LoginModal from "./LoginModal";
+import { useUser } from "./UserContext";
 
 function Menu() {
-    const [showModal, setShowModal] = useState(false);
-    const user = useUser();
-    return (
-        <aside className="menu">
-            <div className="top">
-                <NavLink to="/" activeClassName="active" exact>
-                    Home
-                </NavLink>
-                <NavLink to="/activities/surf" activeClassName="active" exact>
-                    Surf
-                </NavLink>
-                <NavLink to="/activities/buceo" activeClassName="active" exact>
-                    Buceo
-                </NavLink>
-                <NavLink
-                    to="/activities/barranquismo"
-                    activeClassName="active"
-                    exact
-                >
-                    Barranquismo
-                </NavLink>
-                <NavLink to="/activities/masaje" activeClassName="active" exact>
-                    Masajes
-                </NavLink>
-                <NavLink to="/activities/velero" activeClassName="active" exact>
-                    Velero
-                </NavLink>
+  const [showModal, setShowModal] = useState(false);
+  const user = useUser();
 
-                <NavLink to="/activity/create" activeClassName="active" exact>
-                    Crear Actividad
-                </NavLink>
-                <NavLink to="/activity/5" activeClassName="active" exact>
-                    Actividad 5
-                </NavLink>
+  const dispatch = useDispatch();
+  const handleLogout = (e) => {
+    e.stopPropagation();
+    dispatch({ type: "LOGOUT" });
+  };
 
-                <NavLink to="/user/3" activeClassName="active" exact>
-                    Ver datos usuario 3
-                </NavLink>
+  return (
+    <aside className="menu">
+      <div className="top">
+        <NavLink to="/" activeClassName="active" exact>
+          Home
+        </NavLink>
+        <NavLink to="/activities/surf" activeClassName="active" exact>
+          Surf
+        </NavLink>
+        <NavLink to="/activities/buceo" activeClassName="active" exact>
+          Buceo
+        </NavLink>
+        <NavLink to="/activities/barranquismo" activeClassName="active" exact>
+          Barranquismo
+        </NavLink>
+        <NavLink to="/activities/masaje" activeClassName="active" exact>
+          Masajes
+        </NavLink>
+        <NavLink to="/activities/velero" activeClassName="active" exact>
+          Velero
+        </NavLink>
 
-                <div className="user-area">
-                    {!user && (
-                        <button onClick={() => setShowModal(true)}>
-                            Iniciar sesión
-                        </button>
-                    )}
-                </div>
+        <NavLink to="/activity/create" activeClassName="active" exact>
+          Crear Actividad
+        </NavLink>
+        <NavLink to="/activity/5" activeClassName="active" exact>
+          Actividad
+        </NavLink>
 
-                {showModal && (
-                    <LoginModal closeModal={() => setShowModal(false)} />
-                )}
-            </div>
-        </aside>
-    );
+        <div className="user-area">
+          {!user && (
+            <button onClick={() => setShowModal(true)}>Iniciar sesión</button>
+          )}
+          {user && (
+            <Link className="user-info" to="/profile">
+              <div
+                className="avatar"
+                style={{ backgroundImage: `url(${user.avatar})` }}
+              />
+              <span>{user.name}</span>
+              <span className="logout" onClick={handleLogout}>
+                Cerrar sesión
+              </span>
+            </Link>
+          )}
+        </div>
+
+        {showModal && <LoginModal closeModal={() => setShowModal(false)} />}
+      </div>
+    </aside>
+  );
 }
 
 export default Menu;

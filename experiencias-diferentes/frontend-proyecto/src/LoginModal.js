@@ -50,11 +50,17 @@ function Login({ setSignup, closeModal }) {
       </label>
       <button>Iniciar sesión</button>
       <p>
-        Aún no tienes cuenta?
-        <button type="button" onClick={() => setSignup(true)}>
+        ¿Aún no tienes cuenta?
+        <button
+          className="button-modal"
+          type="button"
+          onClick={() => setSignup(true)}
+        >
           Regístrate
         </button>
-        <button onClick={closeModal}>X</button>
+        <button className="escape-inicio" onClick={closeModal}>
+          X
+        </button>
       </p>
     </form>
   );
@@ -64,6 +70,7 @@ function Signup({ setSignup, closeModal }) {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  // const [avatar, setAvatar] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
   const setUser = useSetUser();
   const user = useUser();
@@ -107,6 +114,15 @@ function Signup({ setSignup, closeModal }) {
           onChange={(e) => setEmail(e.target.value)}
         />
       </label>
+      {/* <label>
+        Avatar:
+        <input
+          name="avatar"
+          type="file"
+          value={avatar}
+          onChange={(e) => setAvatar(e.target.value)}
+        />
+      </label> */}
 
       <label>
         Contraseña:
@@ -128,9 +144,9 @@ function Signup({ setSignup, closeModal }) {
         />
       </label>
 
-      <button className="button-modal">Registro</button>
+      <button>Registro</button>
       <p>
-        Ya tienes cuenta?
+        ¿Ya tienes cuenta?
         <button
           className="button-modal"
           type="button"
@@ -138,7 +154,7 @@ function Signup({ setSignup, closeModal }) {
         >
           Inicia sesión
         </button>
-        <button className="escape" onClick={closeModal}>
+        <button className="escape-registro" onClick={closeModal}>
           X
         </button>
       </p>
