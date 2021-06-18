@@ -26,6 +26,7 @@ function UpdateActivity({ activity }) {
     const [price, setPrice] = useState(activity.price || '');
     const [totalPlaces, setTotalPlaces] = useState(activity.totalPlaces || '');
     const [activityUpdated, setActivityUpdated] = useState(false);
+    const [image, setImage] = useState();
 
     const user = useUser();
     const { id } = useParams();
@@ -59,6 +60,30 @@ function UpdateActivity({ activity }) {
         return <Redirect to={`/activity/${id}`} />;
     }
 
+    const handleSubmitImage = async (e) => {
+        e.preventDefault();
+        const fd = new FormData();
+        fd.append('image', image);
+        const res = await fetch(
+            `http://localhost:3080/api/activities/${id}/image`,
+            {
+                method: 'POST',
+                body: fd,
+                headers: {
+                    Authorization: 'Bearer ' + user.token,
+                },
+            }
+        );
+
+        if (res.ok) {
+            setActivityUpdated(true);
+        }
+    };
+
+    const handleImage = (e) => {
+        const f = e.target.files[0];
+        setImage(f);
+    };
     return (
         <div className="update-activity">
             <h1>Editar Actividad</h1>
@@ -144,6 +169,16 @@ function UpdateActivity({ activity }) {
                     onChange={(e) => setTotalPlaces(e.target.value)}
                 />
                 <button className="button-update">Update</button>
+            </form>
+            <h1>Subir imagen</h1>
+            <form className="formUpdate" onSubmit={handleSubmitImage}>
+                <input
+                    name="image"
+                    placeholder="image"
+                    type="file"
+                    onChange={handleImage}
+                />
+                <button className="button-update">subir imagen</button>
             </form>
         </div>
     );
