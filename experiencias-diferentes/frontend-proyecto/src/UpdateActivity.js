@@ -4,11 +4,24 @@ import { Redirect } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import useFetch from './useFetch';
 
-function UpdateActivity() {
-    const [activityName, setActivityName] = useState('');
-    const [type, setType] = useState('');
-    const [description, setDescription] = useState('');
-    const [location, setLocation] = useState('');
+function UpdateActivityWrapper() {
+    const { id } = useParams();
+    const activity = useFetch(`http://localhost:3080/api/activities/${id}`);
+
+    if (!activity) {
+        return <div>Loading...</div>;
+    }
+
+    return <UpdateActivity activity={activity} />;
+}
+
+function UpdateActivity({ activity }) {
+    const [activityName, setActivityName] = useState(
+        activity.activityName || ''
+    );
+    const [type, setType] = useState(activity.type || '');
+    const [description, setDescription] = useState(activity.description || '');
+    const [location, setLocation] = useState(activity.location || '');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [price, setPrice] = useState('');
@@ -17,11 +30,6 @@ function UpdateActivity() {
 
     const user = useUser();
     const { id } = useParams();
-    const activity = useFetch(`http://localhost:3080/api/activities/${id}`);
-
-    if (!activity) {
-        return <div>Loading...</div>;
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -61,11 +69,8 @@ function UpdateActivity() {
                     placeholder="activityName..."
                     type="text"
                     required
-                    value={activityName || activity.title}
-                    onChange={(e) => {
-                        activity.title = '';
-                        setActivityName(e.target.value);
-                    }}
+                    value={activityName}
+                    onChange={(e) => setActivityName(e.target.value)}
                 />
                 <input
                     name="type"
@@ -78,7 +83,7 @@ function UpdateActivity() {
                 <input
                     name="description"
                     placeholder="description..."
-                    type="text-area"
+                    type="text"
                     required
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -129,4 +134,4 @@ function UpdateActivity() {
     );
 }
 
-export default UpdateActivity;
+export default UpdateActivityWrapper;

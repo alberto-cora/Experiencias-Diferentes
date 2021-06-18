@@ -7,8 +7,9 @@ import { NavLink } from 'react-router-dom';
 
 function Activity() {
     const { id } = useParams();
-    const activity = useFetch(`http://localhost:3080/api/activities/${id}`);
-    const user = useUser();
+    const [n, setN] = useState(0);
+    const activity = useFetch(`http://localhost:3080/api/activities/${id}`, n);
+    const user = useUser(); //PARA QUE LO DECLARAMOS?
     const [rating, setRating] = useState('');
     if (!activity) {
         return <div>Loading...</div>;
@@ -28,7 +29,8 @@ function Activity() {
             }
         );
         if (res.ok) {
-            return <Redirect to={`/activity/${id}`} />;
+            //return <Redirect to={`/activity/${id}`} />;
+            setN(n + 1);
         }
     };
 

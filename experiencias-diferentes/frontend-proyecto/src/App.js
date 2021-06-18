@@ -16,6 +16,7 @@ import CreateActivity from './CreateActivity';
 import Activity from './Activity';
 import UpdateActivity from './UpdateActivity';
 import User from './User';
+import UpdateUser from './UpdateUser';
 
 function App() {
     return (
@@ -69,6 +70,10 @@ function App() {
 
                     <Route path="/user/:id" exact>
                         <User />
+                    </Route>
+
+                    <Route path="/user/:id/update" exact>
+                        <UpdateUser />
                     </Route>
 
                     <Route path="/">Not Found</Route>

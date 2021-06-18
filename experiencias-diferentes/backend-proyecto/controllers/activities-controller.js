@@ -136,11 +136,11 @@ async function uploadActivityImage(req, res, next) {
     //no voy a actualizar imagen, voy a devolverla en front como resultado de la búsqueeda por id actividad
     try {
         const activityId = req.params.id;
-        const { file } = req; //DUDA BERTO: VALIDACIONES SOBRE FILE
+        const { file } = req;
         const schema = Joi.number().positive().required();
         await schema.validateAsync(activityId);
 
-        const url = `static/images/${file.filename}`;
+        const url = `${file.filename}`;
 
         await activitiesRepo.updateActivityImage({
             activityId,
