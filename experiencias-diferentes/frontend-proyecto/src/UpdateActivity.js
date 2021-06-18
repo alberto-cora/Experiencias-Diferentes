@@ -16,16 +16,14 @@ function UpdateActivityWrapper() {
 }
 
 function UpdateActivity({ activity }) {
-    const [activityName, setActivityName] = useState(
-        activity.activityName || ''
-    );
+    const [activityName, setActivityName] = useState(activity.title || '');
     const [type, setType] = useState(activity.type || '');
     const [description, setDescription] = useState(activity.description || '');
     const [location, setLocation] = useState(activity.location || '');
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-    const [price, setPrice] = useState('');
-    const [totalPlaces, setTotalPlaces] = useState('');
+    const [startDate, setStartDate] = useState(activity.startDate || '');
+    const [endDate, setEndDate] = useState(activity.endDate || '');
+    const [price, setPrice] = useState(activity.price || '');
+    const [totalPlaces, setTotalPlaces] = useState(activity.totalPlaces || '');
     const [activityUpdated, setActivityUpdated] = useState(false);
 
     const user = useUser();
