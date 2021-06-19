@@ -1,77 +1,116 @@
-import { useParams } from "react-router-dom";
-import useFetch from "./useFetch";
-import { useState } from "react";
-import { Redirect } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { useParams } from 'react-router-dom';
+import useFetch from './useFetch';
+import { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-function UpdateUser() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [userUpdated, setUserUpdated] = useState(false);
-  const { id } = useParams();
-  const user = useFetch(`http://localhost:3080/api/users/${id}`);
+function UpdateUserWrapper() {
+    const { id } = useParams();
+    const user = useFetch(`http://localhost:3080/api/users/${id}`);
 
-  if (!user) {
-    return <div>Loading...</div>;
-  }
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await fetch(`http://localhost:3080/api/users/${id}`, {
-      method: "PUT",
-      body: JSON.stringify({
-        name,
-        email,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + user.token,
-      },
-    });
-    if (res.ok) {
-      setUserUpdated(true);
+    if (!user) {
+        return <i>Loading...</i>;
     }
-  };
 
-  if (userUpdated) {
-    return <Redirect to={`/user/${id}`} />;
-  }
-
-  return (
-    <div className="update-user">
-      <h1>Editar datos Usuario</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          name="name"
-          placeholder="name..."
-          type="text"
-          required
-          value={name || user.name}
-          onChange={(e) => {
-            user.name = "";
-            setName(e.target.value);
-          }}
-        />
-
-        <input
-          name="email"
-          placeholder="email..."
-          type="email"
-          required
-          value={email || user.email}
-          onChange={(e) => {
-            user.email = "";
-            setEmail(e.target.value);
-          }}
-        />
-
-        <button>update</button>
-
-        <NavLink to="/profile" exact>
-          Atrás
-        </NavLink>
-      </form>
-    </div>
-  );
+    return <UpdateUser user={user} />;
 }
 
-export default UpdateUser;
+function UpdateUser({ user }) {
+    const [name, setName] = useState(user.name || '');
+    const [email, setEmail] = useState(user.email || '');
+    const [userUpdated, setUserUpdated] = useState(false);
+    const { id } = useParams();
+    const [image, setImage] = useState();
+
+    const userToken = useSelector((s) => s.user);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const res = await fetch(`http://localhost:3080/api/users/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                name,
+                email,
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + userToken.token,
+            },
+        });
+        if (res.ok) {
+            setUserUpdated(true);
+        }
+    };
+
+    if (userUpdated) {
+        return <Redirect to={`/user/${id}`} />;
+    }
+
+    const handleSubmitUserImage = async (e) => {
+        e.preventDefault();
+        const fd = new FormData();
+        fd.append('image', image);
+        const res = await fetch(`http://localhost:3080/api/users/${id}/image`, {
+            method: 'POST',
+            body: fd,
+            headers: {
+                Authorization: 'Bearer ' + userToken.token,
+            },
+        });
+
+        if (res.ok) {
+            setUserUpdated(true);
+        }
+    };
+
+    const handleUserImage = (e) => {
+        const f = e.target.files[0];
+        setImage(f);
+    };
+
+    return (
+        <div className="update-user">
+            <h1>Editar datos Usuario</h1>
+            <form onSubmit={handleSubmit}>
+                {userToken.id}
+                <input
+                    name="name"
+                    placeholder="name..."
+                    type="text"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
+
+                <input
+                    name="email"
+                    placeholder="email..."
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+
+                <button>update</button>
+
+                <NavLink to="/profile" exact>
+                    Atrás
+                </NavLink>
+            </form>
+
+            <h1>Subir imagen</h1>
+            <form className="formUpdate" onSubmit={handleSubmitUserImage}>
+                <input
+                    name="image"
+                    placeholder="image"
+                    type="file"
+                    onChange={handleUserImage}
+                />
+                <button className="button-update">subir imagen</button>
+            </form>
+        </div>
+    );
+}
+
+export default UpdateUserWrapper;

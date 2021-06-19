@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useUser } from './UserContext';
+import { useSelector } from 'react-redux';
 
 function useFetch(url, n) {
     const [data, setData] = useState(null);
-    const user = useUser();
-
+    const user = useSelector((s) => s.user);
     useEffect(() => {
         const opts = {};
         if (user && user.token) {

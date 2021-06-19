@@ -5,10 +5,12 @@ import './Menu.css';
 import { useState } from 'react';
 import LoginModal from './LoginModal';
 import { useUser } from './UserContext';
+import { useSelector } from 'react-redux';
 
 function Menu() {
     const [showModal, setShowModal] = useState(false);
-    const user = useUser();
+    //const user = useUser();
+    const user = useSelector((s) => s.user);
 
     const dispatch = useDispatch();
     const handleLogout = (e) => {

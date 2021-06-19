@@ -1,12 +1,12 @@
 import './User.css';
 import { useParams } from 'react-router-dom';
 import useFetch from './useFetch';
-import { useUser } from './UserContext';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function User() {
-    const me = useUser();
-    const id = useParams().id || me?.id;
+    const me = useSelector((s) => s.user);
+    const id = useParams()?.id || me?.id;
     const user = useFetch(`http://localhost:3080/api/users/${id}`);
 
     if (!user) {
@@ -18,6 +18,7 @@ function User() {
             <li> EMAIL USUARIO : {user.email}</li>
             <li> NOMBRE USUARIO : {user.name}</li>
             <li>
+                activity/create
                 <img src={user.image} alt="" />
             </li>
             <button>

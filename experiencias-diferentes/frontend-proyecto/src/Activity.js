@@ -1,7 +1,7 @@
 import './Activity.css';
 import { useParams } from 'react-router-dom';
 import useFetch from './useFetch';
-import { useUser } from './UserContext';
+import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -10,7 +10,7 @@ function Activity() {
     const { id } = useParams();
     const [n, setN] = useState(0);
     const activity = useFetch(`http://localhost:3080/api/activities/${id}`, n);
-    const user = useUser(); //PARA QUE LO DECLARAMOS?
+    const user = useSelector((s) => s.user);
     const [rating, setRating] = useState('');
     if (!activity) {
         return <div>Loading...</div>;
