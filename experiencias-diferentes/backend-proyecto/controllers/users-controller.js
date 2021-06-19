@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const usersRepo = require('../repositories/users-repo');
-const { func, required } = require('joi');
 
 async function register(req, res, next) {
     try {
@@ -142,7 +141,7 @@ async function updatePassword(req, res, next) {
 
         const newPasswordHash = await bcrypt.hash(newPassword, 10);
 
-        const updatedPassword = await usersRepo.updatePassword({
+        await usersRepo.updatePassword({
             id,
             newPasswordHash,
         });
@@ -181,7 +180,7 @@ async function updateUserInfo(req, res, next) {
             throw error;
         }
 
-        const updateUserInfo = await usersRepo.updateUserInfo({
+        await usersRepo.updateUserInfo({
             id,
             name,
             email,
