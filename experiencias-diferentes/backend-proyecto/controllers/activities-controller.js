@@ -115,7 +115,7 @@ async function getActivityInfo(req, res, next) {
 
         res.status(200);
         res.send({
-            title: activity.titulo, //SERÁ TYPE?
+            title: activity.titulo,
             id: activity.id,
             type: activity.type,
             description: activity.descripcion,
@@ -141,7 +141,7 @@ async function uploadActivityImage(req, res, next) {
         const schema = Joi.number().positive().required();
         await schema.validateAsync(activityId);
 
-        const url = `${file.filename}`;
+        const url = file.filename;
 
         await activitiesRepo.updateActivityImage({
             activityId,

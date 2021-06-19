@@ -219,6 +219,7 @@ async function getUserInfo(req, res, next) {
             id: user.id,
             name: user.name,
             email: user.email,
+            image: `http://localhost:3080/images/${user.image}`,
         });
     } catch (err) {
         next(err);
@@ -229,7 +230,7 @@ async function uploadUsersImage(req, res, next) {
     try {
         const tokenUserId = req.auth.id;
         const userId = req.params.id;
-        const { file } = req; //Preguntar Berto validaciones sobre FILE??
+        const { file } = req;
 
         const schema = Joi.number().positive().required();
 
@@ -243,9 +244,9 @@ async function uploadUsersImage(req, res, next) {
             throw error;
         }
 
-        const url = `static/images/${file.filename}`;
+        const url = file.filename;
 
-        const updateUserImage = await usersRepo.updateUserImage({
+        await usersRepo.updateUserImage({
             userId,
             url,
         });
