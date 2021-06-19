@@ -158,7 +158,6 @@ async function uploadActivityImage(req, res, next) {
 }
 
 async function searchActivities(req, res, next) {
-    //AÑADIR VALIDACION
     try {
         const { type, date, location, price } = req.query;
         const schema = Joi.object({
@@ -176,7 +175,20 @@ async function searchActivities(req, res, next) {
             location,
             price,
         });
-        res.send(activities);
+        res.send(
+            activities.map((activity) => ({
+                title: activity.titulo,
+                id: activity.id,
+                type: activity.type,
+                description: activity.descripcion,
+                startDate: activity.fecha_inicio,
+                endDate: activity.fecha_fin,
+                totalPlaces: activity.plazas_totales,
+                price: activity.price,
+                location: activity.location,
+                image: `http://localhost:3080/images/${activity.image}`,
+            }))
+        );
     } catch (err) {
         next(err);
     }
