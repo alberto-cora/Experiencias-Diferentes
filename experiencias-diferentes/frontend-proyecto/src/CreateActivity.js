@@ -59,14 +59,19 @@ function CreateActivity() {
                         onChange={(e) => setActivityName(e.target.value)}
                     />
                     <h2> Tipo actividad:</h2>
-                    <input
+                    <label for="type"></label>
+                    <select
                         name="type"
-                        placeholder="type..."
-                        type="text"
-                        required
-                        value={type}
+                        id="type"
                         onChange={(e) => setType(e.target.value)}
-                    />
+                    >
+                        <option value="barranquismo">Barranquismo</option>
+                        <option value="buceo">Buceo</option>
+                        <option value="masaje">Masaje</option>
+                        <option value="surf">Surf</option>
+                        <option value="velero">Velero</option>
+                    </select>
+
                     <h2> Descripción:</h2>
 
                     <textarea

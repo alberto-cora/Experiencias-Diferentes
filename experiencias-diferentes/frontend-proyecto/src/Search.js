@@ -68,7 +68,7 @@ function Search() {
 
                 <input
                     name="location"
-                    placeholder="locatio.."
+                    placeholder="location..."
                     type="text"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
