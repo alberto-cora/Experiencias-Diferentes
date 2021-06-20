@@ -86,22 +86,29 @@ function Activity() {
             <li>
                 <img src={activity.image} alt="" />
             </li>
-            <button onClick={handleReservation}>Reservar</button>
-            <button onClick={handleDeleteReservation}>Cancelar reserva</button>
-            <form onSubmit={handleRate}>
-                <label>
-                    Valoración
-                    <input
-                        name="rating"
-                        value={rating}
-                        type="number"
-                        min="0"
-                        max="5"
-                        onChange={(e) => setRating(e.target.value)}
-                    />
-                </label>
-                <button>Valorar</button>
-            </form>
+
+            {user && <button onClick={handleReservation}>Reservar</button>}
+            {user && (
+                <button onClick={handleDeleteReservation}>
+                    Cancelar reserva
+                </button>
+            )}
+            {user && (
+                <form onSubmit={handleRate}>
+                    <label>
+                        Valoración
+                        <input
+                            name="rating"
+                            value={rating}
+                            type="number"
+                            min="0"
+                            max="5"
+                            onChange={(e) => setRating(e.target.value)}
+                        />
+                    </label>
+                    <button>Valorar</button>
+                </form>
+            )}
 
             {user && user.role && user.role === 'admin' && (
                 <NavLink
