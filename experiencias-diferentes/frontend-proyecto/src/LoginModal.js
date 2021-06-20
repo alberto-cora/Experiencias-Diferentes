@@ -8,6 +8,8 @@ import { useSelector } from 'react-redux';
 function Login({ setSignup, closeModal }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
+
     //const [showModal] = useState(false);
     //  const setUser = useSetUser();
     //const user = useUser();
@@ -22,10 +24,13 @@ function Login({ setSignup, closeModal }) {
             body: JSON.stringify({ email, password }),
             headers: { 'Content-Type': 'application/json' },
         });
+        const data = await res.json();
+
         if (res.ok) {
-            const data = await res.json();
             dispatch({ type: 'LOGIN', user: data });
             closeModal();
+        } else {
+            setError(data.error);
         }
     };
 
@@ -67,6 +72,7 @@ function Login({ setSignup, closeModal }) {
                     X
                 </button>
             </p>
+            {error && <div className="error">{error}</div>}
         </form>
     );
 }
