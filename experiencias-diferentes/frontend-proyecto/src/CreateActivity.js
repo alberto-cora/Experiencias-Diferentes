@@ -12,6 +12,8 @@ function CreateActivity() {
     const [endDate, setEndDate] = useState('');
     const [price, setPrice] = useState('');
     const [totalPlaces, setTotalPlaces] = useState('');
+    const [createdActivity, setCreateActivity] = useState(false);
+
     const user = useSelector((s) => s.user);
 
     const handleSubmit = async (e) => {
@@ -34,9 +36,13 @@ function CreateActivity() {
             },
         });
         if (res.ok) {
-            return <Redirect to="/" />;
+            setCreateActivity(true);
         }
     };
+
+    if (createdActivity) {
+        return <Redirect to={`/`} />;
+    }
 
     if (user && user.role && user.role === 'admin') {
         return (

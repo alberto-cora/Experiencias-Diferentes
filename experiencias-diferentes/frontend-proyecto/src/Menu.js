@@ -24,23 +24,39 @@ function Menu() {
                 <NavLink to="/" activeClassName="active" exact>
                     Home
                 </NavLink>
-                <NavLink to="/activities/surf" activeClassName="active" exact>
+                <NavLink
+                    to="/search?type=surf&location=&date=&price="
+                    activeClassName="active"
+                    exact
+                >
                     Surf
                 </NavLink>
-                <NavLink to="/activities/buceo" activeClassName="active" exact>
+                <NavLink
+                    to="/search?type=buceo&location=&date=&price="
+                    activeClassName="active"
+                    exact
+                >
                     Buceo
                 </NavLink>
                 <NavLink
-                    to="/activities/barranquismo"
+                    to="/search?type=barranquismo&location=&date=&price="
                     activeClassName="active"
                     exact
                 >
                     Barranquismo
                 </NavLink>
-                <NavLink to="/activities/masaje" activeClassName="active" exact>
+                <NavLink
+                    to="/search?type=masaje&location=&date=&price="
+                    activeClassName="active"
+                    exact
+                >
                     Masajes
                 </NavLink>
-                <NavLink to="/activities/velero" activeClassName="active" exact>
+                <NavLink
+                    to="/search?type=velero&location=&date=&price="
+                    activeClassName="active"
+                    exact
+                >
                     Velero
                 </NavLink>
                 {user && user.role && user.role === 'admin' && (
@@ -67,8 +83,12 @@ function Menu() {
                                 }}
                             />
                             <span>{user.name}</span>
+                        </Link>
+                    )}
+                    {user && (
+                        <Link className="user-info" to="/">
                             <span className="logout" onClick={handleLogout}>
-                                Cerrar sesión
+                                Cerrar sesion
                             </span>
                         </Link>
                     )}

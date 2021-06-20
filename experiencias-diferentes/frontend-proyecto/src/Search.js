@@ -53,13 +53,18 @@ function Search() {
                 <title>Experiencias diferentes</title>
             </Helmet>
             <form>
-                <input
+                <label for="type">Tipo</label>
+                <select
                     name="type"
-                    placeholder="type..."
-                    type="text"
-                    value={type}
+                    id="type"
                     onChange={(e) => setType(e.target.value)}
-                />
+                >
+                    <option value="barranquismo">Barranquismo</option>
+                    <option value="buceo">Buceo</option>
+                    <option value="masaje">Masaje</option>
+                    <option value="surf">Surf</option>
+                    <option value="velero">Velero</option>
+                </select>
 
                 <input
                     name="location"
