@@ -103,13 +103,15 @@ function Activity() {
                 <button>Valorar</button>
             </form>
 
-            <NavLink
-                to={`/activity/${id}/update`}
-                activeClassName="active"
-                exact
-            >
-                Editar actividad
-            </NavLink>
+            {user && user.role && user.role === 'admin' && (
+                <NavLink
+                    to={`/activity/${id}/update`}
+                    activeClassName="active"
+                    exact
+                >
+                    Editar actividad
+                </NavLink>
+            )}
         </div>
     );
 }

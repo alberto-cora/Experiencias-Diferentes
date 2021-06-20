@@ -43,11 +43,15 @@ function Menu() {
                 <NavLink to="/activities/velero" activeClassName="active" exact>
                     Velero
                 </NavLink>
-
-                <NavLink to="/activity/create" activeClassName="active" exact>
-                    Crear Actividad
-                </NavLink>
-
+                {user && user.role && user.role === 'admin' && (
+                    <NavLink
+                        to="/activity/create"
+                        activeClassName="active"
+                        exact
+                    >
+                        Crear Actividad
+                    </NavLink>
+                )}
                 <div className="user-area">
                     {!user && (
                         <button onClick={() => setShowModal(true)}>
@@ -69,7 +73,6 @@ function Menu() {
                         </Link>
                     )}
                 </div>
-
                 {showModal && (
                     <LoginModal closeModal={() => setShowModal(false)} />
                 )}

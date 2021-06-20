@@ -58,6 +58,7 @@ async function register(req, res, next) {
             id: createdUser.id,
             name: createdUser.name,
             email: createdUser.email,
+            role: createdUser.role,
             token,
         });
     } catch (err) {
@@ -107,6 +108,7 @@ async function login(req, res, next) {
             id: user.id,
             token,
             name: user.name,
+            role: user.role,
         });
     } catch (err) {
         next(err);

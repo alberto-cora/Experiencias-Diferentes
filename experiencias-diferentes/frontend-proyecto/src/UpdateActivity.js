@@ -1,19 +1,23 @@
 import './Update.css';
 import { useState } from 'react';
-import { useUser } from './UserContext';
 import { Redirect } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import useFetch from './useFetch';
+import { useSelector } from 'react-redux';
 
 function UpdateActivityWrapper() {
     const { id } = useParams();
     const activity = useFetch(`http://localhost:3080/api/activities/${id}`);
+    const user = useSelector((s) => s.user);
 
     if (!activity) {
         return <i>Loading...</i>;
     }
-
-    return <UpdateActivity activity={activity} />;
+    if (user && user.role && user.role === 'admin') {
+        return <UpdateActivity activity={activity} />;
+    } else {
+        return 'Acceso no permitido';
+    }
 }
 
 function UpdateActivity({ activity }) {
@@ -28,8 +32,9 @@ function UpdateActivity({ activity }) {
     const [activityUpdated, setActivityUpdated] = useState(false);
     const [image, setImage] = useState();
 
-    const user = useUser();
     const { id } = useParams();
+
+    const user = useSelector((s) => s.user);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
