@@ -1,0 +1,39 @@
+.update-user form {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  width: 40vw;
+  gap: 14px;
+}
+
+.formUser {
+  align-content: center;
+  margin-left: 25em;
+}
+input {
+  width: 200px;
+}
+.button-update {
+  width: 75px;
+  margin-top: 10px;
+}
+
+.back a {
+  width: 60px;
+  align-self: center;
+}
+
+h1 {
+  background-color: black;
+  color: aquamarine;
+  min-width: 3em;
+  border: 1px solid red;
+  border-radius: 50%;
+  /* width: 150px; */
+  float: inherit;
+}
+
+.formUpdate button {
+  display: flex;
+  flex-direction: row;
+}

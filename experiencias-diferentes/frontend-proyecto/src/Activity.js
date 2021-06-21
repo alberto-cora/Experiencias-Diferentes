@@ -76,20 +76,49 @@ function Activity() {
     };
 
     const currentDate = new Date();
-
     return (
         <div className="activity">
-            <h1>{activity.name}</h1>
-            <li>{activity.title}</li>
-            <li>{activity.id}</li>
-            <li>{activity.description}</li>
-            <li>{activity.startDate}</li>
-            <li>{activity.endDate}</li>
-            <li>{activity.totalPlaces}</li>
-            <li>{activity.price}</li>
-            <li>{activity.location}</li>
-            <li>{activity.availablePlaces}</li>
-            <li>{activity.rating}</li>
+            <h2>Nombre actividad:{activity.name}</h2>
+            <li>
+                <strong>Título:</strong>
+                {activity.title}
+            </li>
+            <li>
+                <strong>ID:</strong>
+                {activity.id}
+            </li>
+            <li>
+                <strong>Descripción:</strong>
+                {activity.description}
+            </li>
+            <li>
+                <strong>Fecha inicio:</strong>
+                {activity.startDate}
+            </li>
+            <li>
+                <strong>Fecha fin:</strong>
+                {activity.endDate}
+            </li>
+            <li>
+                <strong>Plazas totales:</strong>
+                {activity.totalPlaces}
+            </li>
+            <li>
+                <strong>Precio:</strong>
+                {activity.price}€
+            </li>
+            <li>
+                <strong>Lugar:</strong>
+                {activity.location}
+            </li>
+            <li>
+                <strong>Plazas disponibles:</strong>
+                {activity.availablePlaces}
+            </li>
+            <li>
+                <strong>Valoración:</strong>
+                {activity.rating}
+            </li>
             <li>
                 <img src={activity.image} alt="" />
             </li>

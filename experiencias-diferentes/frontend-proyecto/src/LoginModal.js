@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './LoginModal.css';
-import { useSetUser, useUser } from './UserContext';
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -108,6 +107,10 @@ function Signup({ setSignup, closeModal }) {
         return <Redirect to="/" />;
     }
 
+    if (user) {
+        return <Redirect to="/" />;
+    }
+
     return (
         <form onSubmit={handleSignup}>
             <h1>Registro</h1>
@@ -129,15 +132,6 @@ function Signup({ setSignup, closeModal }) {
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </label>
-            {/* <label>
-        Avatar:
-        <input
-          name="avatar"
-          type="file"
-          value={avatar}
-          onChange={(e) => setAvatar(e.target.value)}
-        />
-      </label> */}
 
             <label>
                 Contraseña:
