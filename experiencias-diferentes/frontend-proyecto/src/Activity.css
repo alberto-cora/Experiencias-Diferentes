@@ -6,6 +6,13 @@
   gap: 6px;
 }
 
-.activity > li {
-  align-content: stretch;
+.activity li {
+  list-style: none;
+  color: rgba(0, 0, 0, 0.705);
+}
+
+strong {
+  color: black;
+  margin: 7px;
+  vertical-align: text-bottom;
 }
