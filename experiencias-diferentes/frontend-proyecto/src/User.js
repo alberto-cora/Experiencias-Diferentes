@@ -24,7 +24,7 @@ function User() {
                 - NOMBRE USUARIO : <i> {user.name}</i>
             </h3>
             <h3 className="info">
-                activity/create
+                - FOTO PERFIL
                 <img src={user.image} alt="" />
             </h3>
             <button>
