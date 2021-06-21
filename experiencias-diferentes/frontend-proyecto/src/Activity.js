@@ -13,7 +13,11 @@ function Activity() {
     const user = useSelector((s) => s.user);
     const [rating, setRating] = useState('');
     if (!activity) {
-        return <div>Loading...</div>;
+        return (
+            <div>
+                <i>Loading...</i>
+            </div>
+        );
     }
 
     const handleReservation = async (e) => {
@@ -71,12 +75,15 @@ function Activity() {
         }
     };
 
+    const currentDate = new Date();
+
     return (
         <div className="activity">
             <h1>{activity.name}</h1>
             <li>{activity.title}</li>
             <li>{activity.id}</li>
             <li>{activity.description}</li>
+            <li>{activity.startDate}</li>
             <li>{activity.endDate}</li>
             <li>{activity.totalPlaces}</li>
             <li>{activity.price}</li>
@@ -87,13 +94,15 @@ function Activity() {
                 <img src={activity.image} alt="" />
             </li>
 
-            {user && <button onClick={handleReservation}>Reservar</button>}
-            {user && (
+            {user && new Date(activity.startDate) > currentDate && (
+                <button onClick={handleReservation}>Reservar</button>
+            )}
+            {user && new Date(activity.startDate) > currentDate && (
                 <button onClick={handleDeleteReservation}>
                     Cancelar reserva
                 </button>
             )}
-            {user && (
+            {user && new Date(activity.endDate) < currentDate && (
                 <form onSubmit={handleRate}>
                     <label>
                         Valoración

@@ -84,6 +84,7 @@ function Signup({ setSignup, closeModal }) {
     // const [avatar, setAvatar] = useState("");
     const [repeatedPassword, setRepeatedPassword] = useState('');
     const dispatch = useDispatch();
+    const [error, setError] = useState(null);
 
     const user = useSelector((s) => s.user);
 
@@ -94,10 +95,12 @@ function Signup({ setSignup, closeModal }) {
             body: JSON.stringify({ name, email, password, repeatedPassword }),
             headers: { 'Content-Type': 'application/json' },
         });
+        const data = await res.json();
         if (res.ok) {
-            const data = await res.json();
             dispatch({ type: 'LOGIN', user: data });
             closeModal();
+        } else {
+            setError(data.error);
         }
     };
 
@@ -170,6 +173,7 @@ function Signup({ setSignup, closeModal }) {
                     X
                 </button>
             </p>
+            {error && <div className="error">{error}</div>}
         </form>
     );
 }
