@@ -9,7 +9,13 @@ import { NavLink } from 'react-router-dom';
 function Activity() {
     const { id } = useParams();
     const [n, setN] = useState(0);
+    const [error, setError] = useState(null);
+
     const activity = useFetch(`http://localhost:3080/api/activities/${id}`, n);
+    const book = useFetch(
+        `http://localhost:3080/api/activities/${id}/books/users`,
+        n
+    );
     const user = useSelector((s) => s.user);
     const [rating, setRating] = useState('');
     if (!activity) {
@@ -70,8 +76,13 @@ function Activity() {
                 },
             }
         );
+
+        const data = await res.json();
+
         if (res.ok) {
-            return <Redirect to={`/activity/${id}`} />;
+            setN(n + 1);
+        } else {
+            setError(data.error);
         }
     };
 
@@ -123,30 +134,40 @@ function Activity() {
                 <img src={activity.image} alt="" />
             </li>
 
-            {user && new Date(activity.startDate) > currentDate && (
-                <button onClick={handleReservation}>Reservar</button>
-            )}
-            {user && new Date(activity.startDate) > currentDate && (
-                <button onClick={handleDeleteReservation}>
-                    Cancelar reserva
-                </button>
-            )}
-            {user && new Date(activity.endDate) < currentDate && (
-                <form onSubmit={handleRate}>
-                    <label>
-                        Valoración
-                        <input
-                            name="rating"
-                            value={rating}
-                            type="number"
-                            min="0"
-                            max="5"
-                            onChange={(e) => setRating(e.target.value)}
-                        />
-                    </label>
-                    <button>Valorar</button>
-                </form>
-            )}
+            {user &&
+                new Date(activity.startDate) > currentDate &&
+                book &&
+                !book.activityBookedByUser && (
+                    <button onClick={handleReservation}>Reservar</button>
+                )}
+            {user &&
+                new Date(activity.startDate) > currentDate &&
+                book &&
+                book.activityBookedByUser && (
+                    <button onClick={handleDeleteReservation}>
+                        Cancelar reserva
+                    </button>
+                )}
+            {user &&
+                new Date(activity.endDate) < currentDate &&
+                book &&
+                book.activityBookedByUser && (
+                    <form onSubmit={handleRate}>
+                        <label>
+                            Valoración
+                            <input
+                                name="rating"
+                                value={rating}
+                                type="number"
+                                min="0"
+                                max="5"
+                                onChange={(e) => setRating(e.target.value)}
+                            />
+                        </label>
+                        <button>Valorar</button>
+                        {error && <div className="error">{error}</div>}
+                    </form>
+                )}
 
             {user && user.role && user.role === 'admin' && (
                 <NavLink

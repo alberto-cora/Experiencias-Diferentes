@@ -114,6 +114,12 @@ app.delete(
     booksController.deleteBook
 );
 
+app.get(
+    '/api/activities/:id/books/users',
+    validateAuthorization,
+    booksController.checkUserAndActivityBook
+);
+
 app.use(async (err, req, res, next) => {
     const status = err.isJoi ? 400 : err.httpcode || 500;
     res.status(status);

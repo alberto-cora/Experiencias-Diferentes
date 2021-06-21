@@ -54,7 +54,7 @@ async function bookActivity(req, res, next) {
         }
         // Última parte código función bookActivity
 
-        const bookActivity = await booksRepo.bookActivity({
+        await booksRepo.bookActivity({
             userId,
             activityId,
         });
@@ -103,7 +103,7 @@ async function deleteBook(req, res, next) {
 
             throw error;
         }
-        const deleteBook = await booksRepo.deleteBook({
+        await booksRepo.deleteBook({
             userId,
             activityId,
         });
@@ -116,7 +116,37 @@ async function deleteBook(req, res, next) {
     }
 }
 
+async function checkUserAndActivityBook(req, res, next) {
+    try {
+        const activityId = req.params.id;
+        const userId = req.auth.id;
+
+        const schema = Joi.number().positive().required();
+
+        await schema.validateAsync(activityId);
+        await schema.validateAsync(userId);
+
+        const book = await booksRepo.findBooksByUserIdAndActivityId({
+            userId,
+            activityId,
+        });
+
+        let activityBookedByUser = false;
+        if (book) {
+            activityBookedByUser = true;
+        }
+
+        res.status(200);
+        res.send({
+            activityBookedByUser,
+        });
+    } catch (err) {
+        next(err);
+    }
+}
+
 module.exports = {
     bookActivity,
     deleteBook,
+    checkUserAndActivityBook,
 };
