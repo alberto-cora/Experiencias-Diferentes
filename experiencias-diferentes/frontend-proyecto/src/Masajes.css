@@ -2,7 +2,7 @@
   width: 150px;
   height: 150px;
   position: absolute;
-  background-image: url("../src/static/masajes.jpeg");
+  background-image: url('../src/static/masajes.jpeg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -2,7 +2,6 @@ import './Activity.css';
 import { useParams } from 'react-router-dom';
 import useFetch from './useFetch';
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -98,7 +97,7 @@ function Activity() {
     const currentDate = new Date();
     return (
         <div className="activity">
-            <h2>Nombre actividad:{activity.name}</h2>
+            <h2>{activity.type}</h2>
             <li>
                 <strong>Título:</strong>
                 {activity.title}
@@ -140,7 +139,7 @@ function Activity() {
                 {activity.rating}
             </li>
             <li>
-                <img src={activity.image} alt="" />
+                <img src={activity.image} alt="imagen-actividad" />
             </li>
 
             {user &&
