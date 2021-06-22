@@ -20,69 +20,69 @@ import UpdateUser from './UpdateUser';
 import Footer from './Footer';
 
 function App() {
-    return (
-        <div className="App">
-            <Helmet>
-                <title>Experiencias diferentes</title>
-            </Helmet>
-            <Menu />
-            <hr />
-            <main>
-                <Switch>
-                    <Route path="/" exact>
-                        <Home />
-                    </Route>
-                    <Route path="/search/" exact>
-                        <Search />
-                    </Route>
-                    <Route path="/activities/surf" exact>
-                        <Surf />
-                    </Route>
-                    <Route path="/activities/buceo" exact>
-                        <Buceo />
-                    </Route>
-                    <Route path="/activities/barranquismo" exact>
-                        <Barranquismo />
-                    </Route>
-                    <Route path="/activities/velero" exact>
-                        <Velero />
-                    </Route>
-                    <Route path="/activities/masaje" exact>
-                        <Masajes />
-                    </Route>
+  return (
+    <div className='App'>
+      <Helmet>
+        <title>Experiencias diferentes</title>
+      </Helmet>
+      <Menu />
+      <hr />
+      <main>
+        <Switch>
+          <Route path='/' exact>
+            <Home />
+          </Route>
+          <Route path='/search/' exact>
+            <Search />
+          </Route>
+          <Route path='/activities/surf' exact>
+            <Surf />
+          </Route>
+          <Route path='/activities/buceo' exact>
+            <Buceo />
+          </Route>
+          <Route path='/activities/barranquismo' exact>
+            <Barranquismo />
+          </Route>
+          <Route path='/activities/velero' exact>
+            <Velero />
+          </Route>
+          <Route path='/activities/masaje' exact>
+            <Masajes />
+          </Route>
 
-                    <Route path="/about" exact>
-                        <About />
-                    </Route>
-                    <Route path="/profile">
-                        <Profile />
-                    </Route>
+          <Route path='/about' exact>
+            <About />
+          </Route>
+          <Route path='/profile'>
+            <Profile />
+          </Route>
 
-                    <Route path="/activity/create">
-                        <CreateActivity />
-                    </Route>
-                    <Route path="/activity/:id" exact>
-                        <Activity />
-                    </Route>
+          <Route path='/activity/create'>
+            <CreateActivity />
+          </Route>
+          <Route path='/activity/:id' exact>
+            <Activity />
+          </Route>
 
-                    <Route path="/activity/:id/update" exact>
-                        <UpdateActivity />
-                    </Route>
+          <Route path='/activity/:id/update' exact>
+            <UpdateActivity />
+          </Route>
 
-                    <Route path="/user/:id" exact>
-                        <User />
-                    </Route>
+          <Route path='/user/:id' exact>
+            <User />
+          </Route>
 
-                    <Route path="/user/:id/update" exact>
-                        <UpdateUser />
-                    </Route>
+          <Route path='/user/:id/update' exact>
+            <UpdateUser />
+          </Route>
 
-                    <Route path="/">Not Found</Route>
-                </Switch>
-            </main>
-            <Footer />
-        </div>
-    );
+          <Route path='/'>Not Found</Route>
+        </Switch>
+      </main>
+      <Footer />
+    </div>
+  );
 }
 
 export default App;

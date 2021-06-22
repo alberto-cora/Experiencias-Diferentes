@@ -3,20 +3,19 @@
   flex-direction: column;
   align-items: center;
   margin-top: 25px;
-}
-
-.search-results {
-  text-align: center;
-}
-
-a {
   list-style: none;
-  color: green;
+}
+
+.search-results a {
+  align-items: center;
+  font-size: 1.6em;
 }
 
 .search-results img {
-  width: 30px;
-  height: 30px;
+  align-items: center;
+  margin-top: 20px;
+  width: 50%;
+  height: 50%;
 }
 
 .formSearch {
@@ -24,11 +23,25 @@ a {
   margin: 5px;
   align-items: center;
   padding: 5px;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 10px;
+  flex-direction: row;
+  gap: 15px;
 }
+/* .formSearch input {
+  background-color: rgba(197, 155, 49, 0.671);
+} */
 
 select {
+  /* background-color: rgba(170, 131, 32, 0.658); */
   color: rgb(0, 9, 128);
+}
+
+.search-results p {
+  align-items: center;
+  text-align: start;
+}
+
+.button-search {
+  background-color: black;
+  border-radius: 30%;
+  color: goldenrod;
 }

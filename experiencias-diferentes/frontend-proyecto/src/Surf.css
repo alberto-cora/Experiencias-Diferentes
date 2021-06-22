@@ -2,7 +2,7 @@
   width: 150px;
   height: 150px;
   position: absolute;
-  background-image: url("../src/static/istockphoto-143918363-612x612.jpg");
+  background-image: url('../src/static/istockphoto-143918363-612x612.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

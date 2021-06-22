@@ -18,7 +18,7 @@
 }
 
 .modal-fg {
-  background-color: white;
+  background-color: rgba(101, 231, 236, 0.959);
   border-radius: 4px;
   box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.4);
   color: black;
@@ -35,6 +35,7 @@
 }
 .escape-inicio {
   background-color: rgba(255, 0, 0, 0.767);
+  color: black;
   width: 25px;
   margin-left: 13em;
   margin-top: 5px;
@@ -47,6 +48,7 @@
 
 .escape-registro {
   background-color: rgba(255, 0, 0, 0.795);
+  color: black;
   width: 25px;
   margin-left: 13em;
   margin-top: 5px;

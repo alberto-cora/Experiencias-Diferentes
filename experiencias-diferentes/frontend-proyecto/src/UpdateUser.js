@@ -1,10 +1,10 @@
-import "./UpdateUser.css";
-import { useParams } from "react-router-dom";
-import useFetch from "./useFetch";
-import { useState } from "react";
-import { Redirect } from "react-router-dom";
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import './UpdateUser.css';
+import { useParams } from 'react-router-dom';
+import useFetch from './useFetch';
+import { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function UpdateUserWrapper() {
   const { id } = useParams();
@@ -18,8 +18,8 @@ function UpdateUserWrapper() {
 }
 
 function UpdateUser({ user }) {
-  const [name, setName] = useState(user.name || "");
-  const [email, setEmail] = useState(user.email || "");
+  const [name, setName] = useState(user.name || '');
+  const [email, setEmail] = useState(user.email || '');
   const [userUpdated, setUserUpdated] = useState(false);
   const { id } = useParams();
   const [image, setImage] = useState();
@@ -29,14 +29,14 @@ function UpdateUser({ user }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await fetch(`http://localhost:3080/api/users/${id}`, {
-      method: "PUT",
+      method: 'PUT',
       body: JSON.stringify({
         name,
         email,
       }),
       headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + userToken.token,
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + userToken.token,
       },
     });
     if (res.ok) {
@@ -51,12 +51,12 @@ function UpdateUser({ user }) {
   const handleSubmitUserImage = async (e) => {
     e.preventDefault();
     const fd = new FormData();
-    fd.append("image", image);
+    fd.append('image', image);
     const res = await fetch(`http://localhost:3080/api/users/${id}/image`, {
-      method: "POST",
+      method: 'POST',
       body: fd,
       headers: {
-        Authorization: "Bearer " + userToken.token,
+        Authorization: 'Bearer ' + userToken.token,
       },
     });
 
@@ -71,16 +71,16 @@ function UpdateUser({ user }) {
   };
 
   return (
-    <div className="update-user">
+    <div className='update-user'>
       <h1>Editar datos Usuario</h1>
-      <form className="formUser" onSubmit={handleSubmit}>
+      <form className='formUser' onSubmit={handleSubmit}>
         {/* {userToken.id} */}
         <h2>Nombre:</h2>
 
         <input
-          name="name"
-          placeholder="name..."
-          type="text"
+          name='name'
+          placeholder='name...'
+          type='text'
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -88,30 +88,30 @@ function UpdateUser({ user }) {
         <h2>Email:</h2>
 
         <input
-          name="email"
-          placeholder="email..."
-          type="email"
+          name='email'
+          placeholder='email...'
+          type='email'
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <button className="button-update">Actualizar</button>
+        <button className='button-update'>Actualizar</button>
 
-        <NavLink className="back" to="/profile" exact>
+        <NavLink className='back' to='/profile' exact>
           Atrás
         </NavLink>
       </form>
 
       <h1>Subir imagen</h1>
-      <form className="formUpdate" onSubmit={handleSubmitUserImage}>
+      <form className='formUpdate' onSubmit={handleSubmitUserImage}>
         <input
-          name="image"
-          placeholder="image"
-          type="file"
+          name='image'
+          placeholder='image'
+          type='file'
           onChange={handleUserImage}
         />
-        <button className="button-update">Subir imagen</button>
+        <button className='button-update'>Subir imagen</button>
       </form>
     </div>
   );

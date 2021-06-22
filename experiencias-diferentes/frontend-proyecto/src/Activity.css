@@ -16,3 +16,8 @@ strong {
   margin: 7px;
   vertical-align: text-bottom;
 }
+
+.activity > li > img {
+  width: 50%;
+  height: 50%;
+}

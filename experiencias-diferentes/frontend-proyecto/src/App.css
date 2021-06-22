@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  list-style: none;
+  align-content: center;
 }
 
 .login {
@@ -14,4 +16,34 @@
 hr {
   width: 100vw;
   border: 1px solid red;
+}
+
+body {
+  background-color: rgb(63, 218, 197);
+  background-image: url('./static/agua-de-mar-superemedio.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1 {
+  background-color: black;
+  background-size: initial;
+  background-origin: inherit;
+  color: aquamarine;
+  /* border: 1px solid red;
+  border-width: thick;
+  width: fit-content; */
+}
+
+button {
+  background-color: black;
+  color: goldenrod;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body:hover {
+  color: black;
 }

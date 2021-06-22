@@ -1,8 +1,8 @@
-import { NavLink, Route, Switch } from "react-router-dom";
-import "./Profile.css";
+import { NavLink, Route, Switch } from 'react-router-dom';
+import './Profile.css';
 // import { useSelector } from "react-redux";
-import { Helmet } from "react-helmet";
-import User from "./User";
+import { Helmet } from 'react-helmet';
+import User from './User';
 
 function Profile() {
   // const isLoggedIn = useSelector((s) => !!s.user);
@@ -10,27 +10,27 @@ function Profile() {
   // if (!isLoggedIn) return <Redirect to="/login" />;
 
   return (
-    <div className="profile">
+    <div className='profile'>
       <h1>Perfil</h1>
       <Helmet>
         <title>Experiencias diferentes - Mi Perfil</title>
       </Helmet>
-      <div className="box">
-        <div className="tabs">
-          <NavLink to="/profile" exact activeClassName="active">
+      <div className='box'>
+        <div className='tabs'>
+          <NavLink to='/profile' exact activeClassName='active'>
             Información
           </NavLink>
 
-          <NavLink to="/profile/bookings" exact activeClassName="active">
+          <NavLink to='/profile/bookings' exact activeClassName='active'>
             Historial
           </NavLink>
         </div>
-        <div className="content">
+        <div className='content'>
           <Switch>
-            <Route path="/profile" exact>
+            <Route path='/profile' exact>
               <User />
             </Route>
-            <Route path="/profile/bookings" exact>
+            <Route path='/profile/bookings' exact>
               Bookings ...
             </Route>
           </Switch>

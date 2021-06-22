@@ -1,18 +1,24 @@
 .footer1 {
   background-color: grey;
-  text-align: left;
-  margin-left: 15px;
+  margin: 15px;
   width: 90vw;
   height: 70px;
+  vertical-align: middle;
 }
 
 .footer1 a {
-  text-decoration: none;
-  display: flex;
-  justify-content: stretch;
-  align-content: center;
-  color: blue;
-  text-align: center;
+  display: inline-flex;
+  justify-content: space-between;
+  gap: 10px;
+  word-spacing: 1px;
+  color: aquamarine;
   margin: 10px;
   margin-top: 10px;
+  vertical-align: middle;
 }
+
+/* .where {
+  float: right;
+  margin-right: 25px;
+  vertical-align: super;
+} */
