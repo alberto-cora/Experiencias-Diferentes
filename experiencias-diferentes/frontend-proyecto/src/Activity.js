@@ -39,8 +39,13 @@ function Activity() {
                 },
             }
         );
+
+        const data = await res.json();
+
         if (res.ok) {
             setN(n + 1);
+        } else {
+            setError(data.error);
         }
     };
 
@@ -57,8 +62,12 @@ function Activity() {
                 },
             }
         );
+        const data = await res.json();
+
         if (res.ok) {
             setN(n + 1);
+        } else {
+            setError(data.error);
         }
     };
 
@@ -139,6 +148,8 @@ function Activity() {
                 book &&
                 !book.activityBookedByUser && (
                     <button onClick={handleReservation}>Reservar</button>
+
+                    //{error && <div className="error">{error}</div>}
                 )}
             {user &&
                 new Date(activity.startDate) > currentDate &&
@@ -147,6 +158,8 @@ function Activity() {
                     <button onClick={handleDeleteReservation}>
                         Cancelar reserva
                     </button>
+
+                    //{error && <div className="error">{error}</div>}
                 )}
             {user &&
                 new Date(activity.endDate) < currentDate &&
