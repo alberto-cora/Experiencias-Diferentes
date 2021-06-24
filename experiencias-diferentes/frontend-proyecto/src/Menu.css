@@ -11,27 +11,19 @@
 .top {
     display: flex;
     flex: 1 1 auto;
-    width: 90vw;
+
     justify-content: space-between;
     margin: 15px;
-    padding: 15px;
-    align-items: stretch;
-    background-color: #8f8a838a;
+    align-items: center;
 }
 
 aside.menu a {
     text-decoration: none;
-    color: blue;
+    color: #1c90a0 !important;
 }
 
 aside.menu a.active {
     text-decoration: underline;
-}
-
-.button-menu {
-    color: white;
-    border: 1px solid red;
-    background-color: blue;
 }
 
 .user-area {
@@ -49,6 +41,15 @@ aside.menu a.active {
 
 .logout {
     display: flex;
-    color: red;
+    color: rgb(0, 0, 0);
     margin-top: 5px;
+    font-weight: bolder;
+}
+
+#menu {
+    padding: 5px 0px;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

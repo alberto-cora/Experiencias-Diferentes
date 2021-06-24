@@ -2,6 +2,11 @@
   text-align: center;
   list-style: none;
   align-content: center;
+  padding: 80px 0px;
+  background-image: url(./static/slide-01.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .login {
@@ -19,13 +24,12 @@ hr {
 }
 
 body {
-  background-color: rgb(63, 218, 197);
-  background-image: url('./static/agua-de-mar-superemedio.jpg');
+  background-color: rgb(255, 255, 255);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-h1 {
+/* h1 {
   background-color: black;
   background-size: initial;
   background-origin: inherit;
@@ -33,6 +37,11 @@ h1 {
   /* border: 1px solid red;
   border-width: thick;
   width: fit-content; */
+/* } */
+h1 {
+  background-color: transparent;
+  color: white;
+  font-size: 50px;
 }
 
 button {
@@ -44,6 +53,9 @@ html {
   scroll-behavior: smooth;
 }
 
-body:hover {
-  color: black;
+a:hover {
+  background-color: darkgray;
+  /* border: 1px solid brown;
+    border-radius: 60%;
+    opacity: 60%; */
 }
