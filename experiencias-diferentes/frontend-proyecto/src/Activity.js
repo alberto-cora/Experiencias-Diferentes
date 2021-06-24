@@ -141,7 +141,6 @@ function Activity() {
             <li>
                 <img src={activity.image} alt="imagen-actividad" />
             </li>
-
             {user &&
                 new Date(activity.startDate) > currentDate &&
                 book &&
@@ -159,6 +158,7 @@ function Activity() {
                     //{error && <div className="error">{error}</div>}
                 )}
             {error && <div className="error">{error}</div>}
+
             {user &&
                 new Date(activity.endDate) < currentDate &&
                 book &&
@@ -179,7 +179,6 @@ function Activity() {
                         {error && <div className="error">{error}</div>}
                     </form>
                 )}
-
             {user && user.role && user.role === 'admin' && (
                 <NavLink
                     to={`/activity/${id}/update`}

@@ -104,6 +104,7 @@ function Search() {
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                 />
+
                 <h2>Precio:</h2>
 
                 <input

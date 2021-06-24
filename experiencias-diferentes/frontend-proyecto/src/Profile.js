@@ -21,7 +21,6 @@ function UserBookings() {
     return (
         <div>
             <div className="user-activities">
-                <h2>Actividades</h2>
                 <div>
                     {activities &&
                         activities?.map((activity) => (
@@ -50,6 +49,10 @@ function UserBookings() {
                                     <p>
                                         <strong>Fecha inicio:</strong>
                                         {activity.startDate}
+                                    </p>
+                                    <p>
+                                        <strong>Fecha fin:</strong>
+                                        {activity.endDate}
                                     </p>
                                 </div>
                             </li>

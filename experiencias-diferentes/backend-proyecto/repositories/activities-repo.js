@@ -51,7 +51,7 @@ async function searchActivities({ type, date, location, price }) {
         query = `${query} WHERE`;
         const conditions = [];
 
-        conditions.push('fecha_fin >= current_date()');
+        conditions.push('fecha_fin >= current_timestamp()');
 
         if (type) {
             conditions.push('type=?');
@@ -75,6 +75,7 @@ async function searchActivities({ type, date, location, price }) {
         query = `${query} ${conditions.join(' AND  ')}`;
     }
 
+    query += ' ORDER BY FECHA_INICIO ASC';
     console.log(query);
 
     const [activities] = await database.pool.query(query, params);
