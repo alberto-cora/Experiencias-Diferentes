@@ -133,6 +133,39 @@ async function getActivityInfo(req, res, next) {
     }
 }
 
+async function getUsersActivities(req, res, next) {
+    const tokenUserId = req.auth.id;
+    const userId = req.params.id;
+
+    const schema = Joi.number().positive().required();
+
+    await schema.validateAsync(userId);
+    await schema.validateAsync(tokenUserId);
+
+    if (tokenUserId != userId) {
+        const error = new Error('id usuario inválido');
+        error.httpcode = 401;
+
+        throw error;
+    }
+
+    const activities = await activitiesRepo.getUsersActivities(userId);
+    res.send(
+        activities.map((activity) => ({
+            title: activity.titulo,
+            id: activity.id,
+            type: activity.type,
+            description: activity.descripcion,
+            startDate: activity.fecha_inicio,
+            endDate: activity.fecha_fin,
+            totalPlaces: activity.plazas_totales,
+            price: activity.price,
+            location: activity.location,
+            image: `http://localhost:3080/images/${activity.image}`,
+        }))
+    );
+}
+
 async function uploadActivityImage(req, res, next) {
     //no voy a actualizar imagen, voy a devolverla en front como resultado de la búsqueeda por id actividad
     try {
@@ -194,60 +227,11 @@ async function searchActivities(req, res, next) {
     }
 }
 
-async function getActivities(req, res, next) {
-    try {
-        const activities = await activitiesRepo.getActivities();
-        res.send(activities);
-    } catch (err) {
-        next(err);
-    }
-}
-
-async function getActivitiesByPrice(req, res, next) {
-    try {
-        const activities = await activitiesRepo.findActivitiesByPrice();
-        res.send(activities);
-    } catch (err) {
-        next(err);
-    }
-}
-
-async function getActivitiesByLocation(req, res, next) {
-    try {
-        const activities = await activitiesRepo.findActivitiesByLocation();
-        res.send(activities);
-    } catch (err) {
-        next(err);
-    }
-}
-
-async function getActivitiesByDate(req, res, next) {
-    try {
-        const activities = await activitiesRepo.findActivitiesByDate();
-        res.send(activities);
-    } catch (err) {
-        next(err);
-    }
-}
-
-async function getActivitiesByType(req, res, next) {
-    try {
-        const activities = await activitiesRepo.findActivitiesByType();
-        res.send(activities);
-    } catch (err) {
-        next(err);
-    }
-}
-
 module.exports = {
     createActivity,
     updateActivity,
     getActivityInfo,
     uploadActivityImage,
-    getActivities,
-    getActivitiesByPrice,
-    getActivitiesByLocation,
-    getActivitiesByDate,
-    getActivitiesByType,
     searchActivities,
+    getUsersActivities,
 };

@@ -51,6 +51,8 @@ async function searchActivities({ type, date, location, price }) {
         query = `${query} WHERE`;
         const conditions = [];
 
+        conditions.push('fecha_fin >= current_date()');
+
         if (type) {
             conditions.push('type=?');
             params.push(type);
@@ -79,10 +81,19 @@ async function searchActivities({ type, date, location, price }) {
     return activities;
 }
 
+async function getUsersActivities(userId) {
+    const query =
+        ' SELECT a.* FROM activities a  join bookings b on a.id=b.activity_id where b.user_id= ?';
+    const [activities] = await database.pool.query(query, userId);
+
+    return activities;
+}
+
 module.exports = {
     createActivity,
     updateActivity,
     updateActivityImage,
     findActivitiesById,
     searchActivities,
+    getUsersActivities,
 };

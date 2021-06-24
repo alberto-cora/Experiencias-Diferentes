@@ -65,5 +65,5 @@ CREATE TABLE `bookings`(
 
 
 
-/*  UPDATE users SET role = 'admin' WHERE email = 'cora@gmail.com' 
- */ 
+ /* UPDATE users SET role = 'admin' WHERE email = 'cora@gmail.com' 
+ 

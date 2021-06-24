@@ -1,8 +1,11 @@
 #home {
-  padding: 80px 0px;
+    padding: 80px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 h1 {
-  background-color: transparent;
-  color: white;
-  font-size: 50px;
+    background-color: transparent;
+    color: white;
+    font-size: 50px;
 }

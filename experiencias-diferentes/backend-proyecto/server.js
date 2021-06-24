@@ -91,6 +91,11 @@ app.post(
     upload.single('image'),
     activitiesController.uploadActivityImage
 );
+app.get(
+    '/api/activities/users/:id',
+    validateAuthorization,
+    activitiesController.getUsersActivities
+);
 
 //Rating
 

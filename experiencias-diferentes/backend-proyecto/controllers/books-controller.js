@@ -46,8 +46,10 @@ async function bookActivity(req, res, next) {
         const totalBooks = await booksRepo.findTotalBookingsCountByActivityId(
             activityId
         );
-
-        if (realActivity.totalPlaces <= totalBooks) {
+        console.log(
+            `totalplaces ${realActivity.plazas_totales} totalBooks ${totalBooks}`
+        );
+        if (realActivity.plazas_totales < totalBooks + 1) {
             const error = new Error('no quedan plazas libres');
             error.httpcode = 401;
             throw error;

@@ -147,8 +147,6 @@ function Activity() {
                 book &&
                 !book.activityBookedByUser && (
                     <button onClick={handleReservation}>Reservar</button>
-
-                    //{error && <div className="error">{error}</div>}
                 )}
             {user &&
                 new Date(activity.startDate) > currentDate &&
@@ -160,6 +158,7 @@ function Activity() {
 
                     //{error && <div className="error">{error}</div>}
                 )}
+            {error && <div className="error">{error}</div>}
             {user &&
                 new Date(activity.endDate) < currentDate &&
                 book &&
