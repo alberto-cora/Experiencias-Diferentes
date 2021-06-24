@@ -1,14 +1,15 @@
 import Helmet from 'react-helmet';
 import Search from './Search';
-
+import './Home.css';
 function Home() {
   return (
-    <div className='home'>
-      <h1>Home</h1>
+    <div className='home' id='home'>
       <Helmet>
         <title>Experiencias diferentes - Home</title>
       </Helmet>
-      Welcome to the web where your adventures can come true
+      <h1 class='home-header'>
+        Welcome to the web where your adventures can come true
+      </h1>
       <Search />
       <hr />
     </div>

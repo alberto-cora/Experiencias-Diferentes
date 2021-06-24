@@ -15,35 +15,35 @@ function SearchResults({ searchQuery }) {
       <h2>Resultados:</h2> <hr></hr>
       {results &&
         results?.map((activity) => (
-          <li>
-            <div className='search-results'>
-              <Link to={`/activity/${activity.id}`}>
-                Ir a...{activity.title}
-              </Link>
-              <br />
-              <img src={activity.image} alt='foto-actividad' />
-              <p>
-                <strong>Descripción:</strong>
-                {activity.description}
-              </p>
-              <p>
-                <strong>Precio:</strong>
-                {activity.price}€
-              </p>
-              <p>
-                <strong>Lugar:</strong>
-                {activity.location}
-              </p>
-              <p>
-                <strong>Fecha inicio:</strong>
-                {activity.startDate}
-              </p>
-              <p>
-                <strong>Plazas totales:</strong>
-                {activity.totalPlaces}
-              </p>
-            </div>
-          </li>
+          <div className='search-results'>
+            <Link to={`/activity/${activity.id}`}>Ir a...{activity.title}</Link>
+            <br />
+            <img src={activity.image} alt='foto-actividad' />
+            <p className='p1'>
+              <strong>Tipo:</strong>
+              {activity.type}
+            </p>
+            <p className='p2'>
+              <strong>Descripción:</strong>
+              {activity.description}
+            </p>
+            <p className='p3'>
+              <strong>Precio:</strong>
+              {activity.price}€
+            </p>
+            <p className='p4'>
+              <strong>Lugar:</strong>
+              {activity.location}
+            </p>
+            <p className='p5'>
+              <strong>Fecha inicio:</strong>
+              {activity.startDate}
+            </p>
+            <p className='p6'>
+              <strong>Plazas totales:</strong>
+              {activity.totalPlaces}
+            </p>
+          </div>
         ))}
       {!results && <i>Loading...</i>}
       {results && results.length === 0 && <i>No hay resultados!</i>}
@@ -65,12 +65,10 @@ function Search() {
 
   return (
     <div className='search'>
-      <h1>Buscador actividades</h1>
-
       <Helmet>
         <title>Experiencias diferentes</title>
       </Helmet>
-      <form className='formSearch'>
+      <form className='formSearch' id='search'>
         <label for='type'>
           <h2>Tipo de actividad:</h2>
         </label>
@@ -110,7 +108,7 @@ function Search() {
           onChange={(e) => setPrice(e.target.value)}
         />
 
-        <button className='button-search'>Buscar</button>
+        <button class='main-button'>Buscar</button>
       </form>
       {(locationParam || typeParam || priceParam || dateParam) && (
         <SearchResults

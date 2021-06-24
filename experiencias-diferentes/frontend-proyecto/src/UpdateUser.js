@@ -102,6 +102,7 @@ function UpdateUser({ user }) {
           Atrás
         </NavLink>
       </form>
+      <hr />
 
       <h1>Subir imagen</h1>
       <form className='formUpdate' onSubmit={handleSubmitUserImage}>

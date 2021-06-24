@@ -18,7 +18,7 @@ function Menu() {
   };
 
   return (
-    <aside className='menu'>
+    <aside className='menu' id='menu'>
       <div className='top'>
         <NavLink to='/' activeClassName='active' exact>
           Home
@@ -61,7 +61,7 @@ function Menu() {
           {user && (
             <Link className='user-info' to='/'>
               <span className='logout' onClick={handleLogout}>
-                Cerrar sesion
+                Cerrar sesión
               </span>
             </Link>
           )}
