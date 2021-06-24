@@ -9,34 +9,34 @@
   font-style: normal;
 } */
 .top {
-  display: flex;
-  flex: 1 1 auto;
-  width: 90vw;
-  justify-content: space-between;
-  margin: 15px;
-  padding: 15px;
-  align-items: stretch;
-  background-color: #8f8a838a;
+    display: flex;
+    flex: 1 1 auto;
+    width: 90vw;
+    justify-content: space-between;
+    margin: 15px;
+    padding: 15px;
+    align-items: stretch;
+    background-color: #8f8a838a;
 }
 
 aside.menu a {
-  text-decoration: none;
-  color: blue;
+    text-decoration: none;
+    color: blue;
 }
 
 aside.menu a.active {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .button-menu {
-  color: white;
-  border: 1px solid red;
-  background-color: blue;
+    color: white;
+    border: 1px solid red;
+    background-color: blue;
 }
 
 .user-area {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 /* .avatar {
@@ -48,7 +48,7 @@ aside.menu a.active {
 } */
 
 .logout {
-  display: flex;
-  color: red;
-  margin-top: 5px;
+    display: flex;
+    color: red;
+    margin-top: 5px;
 }
