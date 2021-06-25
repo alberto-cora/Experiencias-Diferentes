@@ -9,26 +9,26 @@
   font-style: normal;
 } */
 .top {
-    display: flex;
-    flex: 1 1 auto;
+  display: flex;
+  flex: 1 1 auto;
 
-    justify-content: space-between;
-    margin: 15px;
-    align-items: center;
+  justify-content: space-between;
+  margin: 15px;
+  align-items: center;
 }
 
 aside.menu a {
-    text-decoration: none;
-    color: #1c90a0 !important;
+  text-decoration: none;
+  color: #1c90a0 !important;
 }
 
 aside.menu a.active {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .user-area {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 /* .avatar {
@@ -40,16 +40,16 @@ aside.menu a.active {
 } */
 
 .logout {
-    display: flex;
-    color: rgb(0, 0, 0);
-    margin-top: 5px;
-    font-weight: bolder;
+  display: flex;
+  color: rgb(0, 0, 0);
+  margin-top: 5px;
+  font-weight: bolder;
 }
 
 #menu {
-    padding: 5px 0px;
-    background-color: rgba(255, 255, 255, 0.692);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  padding: 5px 0px;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

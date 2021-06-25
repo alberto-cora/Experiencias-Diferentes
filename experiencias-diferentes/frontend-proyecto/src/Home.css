@@ -1,8 +1,14 @@
-#home {
-    padding: 80px 0px;
+.home {
+  padding: 80px 0px;
+  background-image: url(./static/slide-01.jpg);
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 h1 {
-    background-color: transparent;
-    color: white;
-    font-size: 50px;
+  background-color: transparent;
+  color: white;
+  font-size: 50px;
 }
