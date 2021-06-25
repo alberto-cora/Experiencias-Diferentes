@@ -70,14 +70,12 @@ function Activity() {
         }
     };
 
-    const handleRate = async (e) => {
-        e.preventDefault();
-
+    const sendRating = async (value) => {
         const res = await fetch(
             `http://localhost:3080/api/activities/${id}/rate`,
             {
                 method: 'POST',
-                body: JSON.stringify({ rating }),
+                body: JSON.stringify({ rating: value }),
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: 'Bearer ' + user.token,
@@ -112,11 +110,11 @@ function Activity() {
             </li>
             <li>
                 <strong>Fecha inicio:</strong>
-                {activity.startDate}
+                {new Date(activity.startDate).toLocaleDateString()}
             </li>
             <li>
                 <strong>Fecha fin:</strong>
-                {activity.endDate}
+                {new Date(activity.endDate).toLocaleDateString()}
             </li>
             <li>
                 <strong>Plazas totales:</strong>
@@ -163,21 +161,16 @@ function Activity() {
                 new Date(activity.endDate) < currentDate &&
                 book &&
                 book.activityBookedByUser && (
-                    <form onSubmit={handleRate}>
-                        <label>
-                            Valoración
-                            <input
-                                name="rating"
-                                value={rating}
-                                type="number"
-                                min="0"
-                                max="5"
-                                onChange={(e) => setRating(e.target.value)}
-                            />
-                        </label>
-                        <button>Valorar</button>
+                    <>
+                        <ul>
+                            <li onClick={() => sendRating(1)}>⭐</li>
+                            <li onClick={() => sendRating(2)}>⭐</li>
+                            <li onClick={() => sendRating(3)}>⭐</li>
+                            <li onClick={() => sendRating(4)}>⭐</li>
+                            <li onClick={() => sendRating(5)}>⭐</li>
+                        </ul>
                         {error && <div className="error">{error}</div>}
-                    </form>
+                    </>
                 )}
             {user && user.role && user.role === 'admin' && (
                 <NavLink
