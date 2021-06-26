@@ -27,3 +27,12 @@
 .box .tabs {
   display: inline;
 }
+.user-activities .search-results > a {
+  color: #333;
+  position: static;
+  left: 0px;
+}
+
+.user-activities .search-results > img {
+  margin-left: 10px;
+}

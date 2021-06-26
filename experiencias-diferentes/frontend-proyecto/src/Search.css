@@ -50,16 +50,18 @@ a {
   grid-area: p6;
 }
 .search-results a {
-  color: whitesmoke;
+  color: #333;
   font-size: 1.6em;
   margin-left: 65px;
   margin-top: 10px;
+  box-sizing: border-box;
   margin-bottom: -10px;
 }
 
 .search-results img {
   align-items: center;
   margin-top: 20px;
+  margin-left: 10px;
   width: 300px;
   height: 220px;
   grid-area: img;
@@ -84,6 +86,7 @@ select {
 }
 
 .search-results p {
+  font-size: 1.1em;
   align-items: flex-start;
   text-align: start;
   margin-top: -10px;

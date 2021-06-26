@@ -12,6 +12,7 @@ function Home() {
       </h1>
       <Search />
       <hr />
+      <div className='foto-principal'></div>
     </div>
   );
 }
