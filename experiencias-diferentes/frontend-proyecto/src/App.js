@@ -18,6 +18,7 @@ import UpdateActivity from './UpdateActivity';
 import User from './User';
 import UpdateUser from './UpdateUser';
 import Footer from './Footer';
+import Where from './where';
 
 function App() {
     return (
@@ -53,6 +54,9 @@ function App() {
 
                     <Route path="/about" exact>
                         <About />
+                    </Route>
+                    <Route path="/where" exact>
+                        <Where />
                     </Route>
                     <Route path="/profile">
                         <Profile />
