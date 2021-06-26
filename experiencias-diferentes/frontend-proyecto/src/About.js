@@ -1,4 +1,5 @@
 import Helmet from 'react-helmet';
+import './About.css';
 
 function About() {
     return (
@@ -7,10 +8,8 @@ function About() {
             <Helmet>
                 <title>Experiencias diferentes - About us</title>
             </Helmet>
-            La empresa nace como una idea de dos amigos para cubrir un espacio
-            en el mercado en cual se demanden actividades de aventura.
-            Destacamos por ser una empresa que oferta una serie de experiencias
-            diferentes de lo más variada y singular.
+            We are a better company when talking about the unique experiencies
+            <span className="trick"></span>
         </div>
     );
 }

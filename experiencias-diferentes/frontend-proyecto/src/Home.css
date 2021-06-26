@@ -12,3 +12,11 @@ h1 {
   color: white;
   font-size: 50px;
 }
+.home .foto-principal {
+  background-image: url('./static/image.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 850px;
+}

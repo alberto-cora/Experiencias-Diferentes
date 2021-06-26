@@ -18,7 +18,7 @@ import UpdateActivity from './UpdateActivity';
 import User from './User';
 import UpdateUser from './UpdateUser';
 import Footer from './Footer';
-import Where from './where';
+import Where from './Where';
 
 function App() {
     return (
