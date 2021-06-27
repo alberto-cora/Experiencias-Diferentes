@@ -87,6 +87,8 @@ select {
 
 .search-results p {
   font-size: 1.1em;
+  color: rgba(0, 0, 0, 0.705);
+
   align-items: flex-start;
   text-align: start;
   margin-top: -10px;
@@ -97,6 +99,7 @@ select {
   text-overflow: clip;
 }
 .search-results strong {
+  font-style: oblique;
   align-items: flex-start;
   text-align: start;
   margin-left: -8px;

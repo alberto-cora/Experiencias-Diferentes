@@ -11,22 +11,28 @@
     'img price'
     'img location'
     'img places'
-    'img rating'
+    'button-noreserva rating'
     'rate error'
-    'edit edit';
+    'button-reserva edit';
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(12, 50px);
   border: 1px solid whitesmoke;
   background-color: #4197dd;
+  gap: 10px;
 }
 .activity > p.foto-actividad {
   grid-area: img;
   margin: 10px;
   position: relative;
   top: 50px;
+  margin-bottom: -20px;
 }
 .activity > h2.type {
   grid-area: type;
+  text-transform: uppercase;
+  margin-top: 10px;
+  letter-spacing: 1px;
+  font-size: 1.4em;
 }
 .activity > p.title {
   grid-area: title;
@@ -36,9 +42,13 @@
 }
 .activity > p.bio {
   grid-area: bio;
+  word-spacing: -1px;
+  margin-top: -5px;
+  margin-bottom: 10px;
 }
 .activity > p.date-start {
   grid-area: date-start;
+  padding-top: 10px;
 }
 .activity > p.date-end {
   grid-area: date-end;
@@ -63,10 +73,33 @@
 }
 .activity > ul.rate {
   grid-area: rate;
+  margin-left: 50px;
+  margin-top: -20px;
 }
 .activity > a.edit {
   grid-area: edit;
+  margin-bottom: 10px;
 }
+.activity > button.button-reserva {
+  grid-area: button-reserva;
+  margin-left: 180px;
+  width: 100px;
+  height: 25px;
+}
+.activity > button.button-noreserva {
+  grid-area: button-reserva;
+  margin-top: -50px;
+  margin-left: 180px;
+  width: 100px;
+  height: 40px;
+}
+.activity > button {
+  width: 100px;
+  margin-top: -20px;
+  margin-left: 80px;
+  margin-bottom: 15px;
+}
+
 .activity > p {
   margin-top: 5px;
   color: rgba(0, 0, 0, 0.705);
@@ -74,6 +107,7 @@
 
 strong {
   color: black;
+  font-style: oblique;
   font-size: 1.2em;
   margin: 7px;
   vertical-align: text-bottom;
@@ -87,7 +121,4 @@ strong {
 .activity .rate {
   display: flex;
   list-style: none;
-}
-
-.activity .edit > a {
 }

@@ -9,7 +9,7 @@ function Where() {
         <title>Experiencias diferentes - Dónde estamos...</title>
       </Helmet>
       Nuestras oficinas centrales se encuentran situadas en A Coruña.
-      <span className='foto'></span>
+      <span className='foto-where'></span>
     </div>
   );
 }
